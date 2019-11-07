@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "cc8014cb"
+    });
+  daovoice('update');
+  </script>
+
+
+  <meta name="description" content="全局获取Context很多地方都需要用到Context，弹出Toast的时候需要，启动活动的时候需要，发送广播的时候需要，操作数据库的时候需要，使用通知的时候需要，等等等等。 目前很多操作都是在活动中进行的，因此很少遇到获取Context的困难，因为活动本身就是一个Context，但是应用框架逐渐复杂起来的时候，很多逻辑代码都会脱离Activity类。">
+<meta name="keywords" content="进阶,技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第十三章：进阶技巧">
+<meta property="og:url" content="https://blog.234432.xyz/2019/02/21/第十三章：进阶技巧/index.html">
+<meta property="og:site_name" content="ZaneCode6574的博客">
+<meta property="og:description" content="全局获取Context很多地方都需要用到Context，弹出Toast的时候需要，启动活动的时候需要，发送广播的时候需要，操作数据库的时候需要，使用通知的时候需要，等等等等。 目前很多操作都是在活动中进行的，因此很少遇到获取Context的困难，因为活动本身就是一个Context，但是应用框架逐渐复杂起来的时候，很多逻辑代码都会脱离Activity类。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/21/第十三章：进阶技巧/debug.png">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/21/第十三章：进阶技巧/Doze.jpg">
+<meta property="og:updated_time" content="2019-02-21T17:16:38.648Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第十三章：进阶技巧">
+<meta name="twitter:description" content="全局获取Context很多地方都需要用到Context，弹出Toast的时候需要，启动活动的时候需要，发送广播的时候需要，操作数据库的时候需要，使用通知的时候需要，等等等等。 目前很多操作都是在活动中进行的，因此很少遇到获取Context的困难，因为活动本身就是一个Context，但是应用框架逐渐复杂起来的时候，很多逻辑代码都会脱离Activity类。">
+<meta name="twitter:image" content="https://blog.234432.xyz/2019/02/21/第十三章：进阶技巧/debug.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZaneCode6574的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://blog.234432.xyz/2019/02/21/第十三章：进阶技巧/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>第十三章：进阶技巧 | ZaneCode6574的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZaneCode6574的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">时光机</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/21/第十三章：进阶技巧/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">第十三章：进阶技巧
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-21 20:44:19" itemprop="dateCreated datePublished" datetime="2019-02-21T20:44:19+08:00">2019-02-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-22 01:16:38" itemprop="dateModified" datetime="2019-02-22T01:16:38+08:00">2019-02-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/第一行代码Android/" itemprop="url" rel="index"><span itemprop="name">第一行代码Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/21/第十三章：进阶技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/21/第十三章：进阶技巧/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">15k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">13 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="全局获取Context"><a href="#全局获取Context" class="headerlink" title="全局获取Context"></a>全局获取Context</h1><p>很多地方都需要用到Context，弹出Toast的时候需要，启动活动的时候需要，发送广播的时候需要，操作数据库的时候需要，使用通知的时候需要，等等等等。</p>
+<p>目前很多操作都是在活动中进行的，因此很少遇到获取Context的困难，因为活动本身就是一个Context，但是应用框架逐渐复杂起来的时候，很多逻辑代码都会脱离Activity类。</p>
+<a id="more"></a>
+<h2 id="第九章的HttpUtil类"><a href="#第九章的HttpUtil类" class="headerlink" title="第九章的HttpUtil类"></a>第九章的HttpUtil类</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zanecode6574.networktest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.net.HttpURLConnection;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> sendHttpRequest(<span class="keyword">String</span> address) &#123;</span><br><span class="line">        HttpURLConnection connection = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            URL url = <span class="keyword">new</span> <span class="type">URL</span>(address);</span><br><span class="line">            connection = (HttpURLConnection) url.openConnection();</span><br><span class="line">            connection.setRequestMethod(<span class="string">"GET"</span>);</span><br><span class="line">            connection.setConnectTimeout(<span class="number">8000</span>);</span><br><span class="line">            connection.setReadTimeout(<span class="number">8000</span>);</span><br><span class="line">            connection.setDoInput(<span class="literal">true</span>);</span><br><span class="line">            connection.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">            InputStream <span class="keyword">in</span> = connection.getInputStream();</span><br><span class="line">            BufferedReader reader = <span class="keyword">new</span> <span class="type">BufferedReader</span>(<span class="keyword">new</span> <span class="type">InputStreamReader</span>(<span class="keyword">in</span>));</span><br><span class="line">            StringBuilder response = <span class="keyword">new</span> <span class="type">StringBuilder</span>();</span><br><span class="line">            <span class="keyword">String</span> line;</span><br><span class="line">            <span class="keyword">while</span> ((line = reader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">                response.append(line);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> response.toString();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> e.getMessage();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="literal">null</span>) &#123;</span><br><span class="line">                connection.disconnect();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里如果想对sendHttpRequest方法进行优化，在检测到网络不存在的时候给用户一个Toast提示，但是这里是没有Context的</p>
+<ul>
+<li>方法一：在sendHttpRequest方法中添加一个Context参数</li>
+<li>方法二：Android提供了一个Application类，每当应用程序启动的时候，系统就会自动将这个类进行初始化。而我们可以定制一个自己的Application类，以便于管理程序内一些全局的状态信息，比如说全局Context。<ul>
+<li>创建一个MyApplication类继承自Application</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> static <span class="type">Context</span> context;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void onCreate() &#123;</span><br><span class="line">		context = getApplicationContext();</span><br><span class="line">	&#125;</span><br><span class="line">	public static <span class="type">Context</span> getContext() &#123;</span><br><span class="line">		<span class="keyword">return</span> context;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重写父类的onCreate()方法，并通过调用getApplicationContext()方法得到了一个应用程序级别的Context，然后又提供了一个静态的getContext()方法，在这里将刚才获取到的Context进行返回。</li>
+<li>设置程序启动的时候初始化MyApplication类而不是默认的Application类</li>
+<li>修改AndroidManifest.xml文件，在application标签下指定</li>
+</ul>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;manifest xmlns<span class="function">:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">	package=<span class="string">"com.example.networktest"</span></span><br><span class="line">	android<span class="function">:versionCode</span>=<span class="string">"1"</span></span><br><span class="line">	android<span class="function">:versionName</span>=<span class="string">"1.0"</span> &gt;</span><br><span class="line">		<span class="string">...</span></span><br><span class="line">		&lt;application</span><br><span class="line">			android<span class="function">:name</span>=<span class="string">"com.example.networktest.MyApplication"</span></span><br><span class="line">		<span class="string">...</span>&gt;</span><br><span class="line">		<span class="string">...</span></span><br><span class="line">	&lt;<span class="string">/application</span>&gt;</span><br><span class="line">&lt;<span class="string">/manifest</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>这里一定要加上完整的包名，否则找不到</p>
+<ul>
+<li>现在修改sendHttpRequest方法直接就可以</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(<span class="selector-tag">MyApplication</span><span class="selector-class">.getContext</span>(), "<span class="selector-tag">network</span> <span class="selector-tag">is</span> <span class="selector-tag">unavailable</span>",<span class="selector-tag">Toast</span><span class="selector-class">.LENGTH_SHORT</span>)<span class="selector-class">.show</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="第六章使用LitePal操作数据库"><a href="#第六章使用LitePal操作数据库" class="headerlink" title="第六章使用LitePal操作数据库"></a>第六章使用LitePal操作数据库</h2><p>当时为了让LitePal正常工作，我们在application标签中配置了<code>android:name=&quot;org.litepal.LitePalApplication&quot;</code></p>
+<p>原理是一样的，这样LitePal就能在内部获取到Context</p>
+<p>如果我们这个时候配置了自己的Application就会和LitePalApplication冲突，任何项目都只能配置一个Application，对于这种情况LitePal提供了解决方法，就是在我们的Application中调用LitePal的初始化方法</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> static <span class="type">Context</span> context;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void onCreate() &#123;</span><br><span class="line">		context = getApplicationContext();</span><br><span class="line">		<span class="type">LitePal</span>.initialize(context);</span><br><span class="line">	&#125;</span><br><span class="line">	public static <span class="type">Context</span> getContext() &#123;</span><br><span class="line">		<span class="keyword">return</span> context;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用Intent传递对象"><a href="#使用Intent传递对象" class="headerlink" title="使用Intent传递对象"></a>使用Intent传递对象</h1><h2 id="Serializable方式"><a href="#Serializable方式" class="headerlink" title="Serializable方式"></a>Serializable方式</h2><p>Serializable是序列化的意思，表示将一个对象转换成可存储或可传输的状态。序列化后的对象可以在网络上进行传输，也可以存储到本地。至于序列化的方法也很简单，只需要让一个类去implements Serializable这个接口就可以直接用Intent传递了</p>
+<p>发送对象的直接用Intent的putExtra方法，但是接收的时候要使用<code>(类)getIntent().getSerializableExtra()</code>方法，比如我传递的是Person类的person对象，接收的时候就是<code>Person person=(Person)getIntent().getSerializableExtra(&quot;xxx&quot;)</code></p>
+<h2 id="Parcelable方式"><a href="#Parcelable方式" class="headerlink" title="Parcelable方式"></a>Parcelable方式</h2><p>不同于将对象进行序列化，Parcelable方式的实现原理是将一个完整的对象进行分解，而分解后的每一部分都是Intent所支持的数据类型，这样也就实现传递对象的功能了。</p>
+<p>Person类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	...</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">		dest.writeString(name);  <span class="comment">// 写出name</span></span><br><span class="line">		dest.writeInt(age);  <span class="comment">// 写出age</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;Person&gt; CREATOR = <span class="keyword">new</span> Parcelable.Creator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> Person <span class="title">createFromParcel</span><span class="params">(Parcel source)</span> </span>&#123;</span><br><span class="line">			Person person = <span class="keyword">new</span> Person();</span><br><span class="line">			person.name = source.readString();  <span class="comment">// 读取name</span></span><br><span class="line">			person.age = source.readInt();  <span class="comment">// 读取age</span></span><br><span class="line">			<span class="keyword">return</span> person;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="keyword">public</span> Person[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> Person[size];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Parcelable的实现方式要稍微复杂一些。首先我们让Person类去实现了Parcelable接口，这样就必须重写describeContents()和writeToParcel()这两个方法。其中describeContents()方法直接返回0就可以了，而writeToParcel()方法中我们需要调用Parcel的writeXxx()方法，将Person类中的字段一一写出。注意，字符串型数据就调用writeString()方法，整型数据就调用writeInt()方法，以此类推。</p>
+<p>除此之外，我们还必须在Person类中提供一个名为CREATOR的常量，这里创建了Parcelable.Creator接口的一个实现，并将泛型指定为Person。接着需要重写createFromParcel()和newArray()这两个方法，在createFromParcel()方法中我们要去读取刚才写出的name和age字段，并创建一个Person对象进行返回，其中name和age都是调用Parcel的readXxx()方法读取到的，注意这里读取的顺序一定要和刚才写出的顺序完全相同。而newArray()方法中的实现就简单多了，只需要new出一个Person数组，并使用方法中传入的size作为数组大小就可以了。</p>
+<p>在接收的时候<code>Person person = (Person) getIntent().getParcelableExtra(&quot;xxx&quot;);</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Serializable的方式较为简单，但由于会把整个对象进行序列化，因此效率会比Parcelable方式低一些，所以在通常情况下还是更加推荐使用Parcelable的方式来实现Intent传递对象的功能。</p>
+<p>我个人还没有感觉到差距，偏向用简单的。</p>
+<h1 id="定制自己的日志工具"><a href="#定制自己的日志工具" class="headerlink" title="定制自己的日志工具"></a>定制自己的日志工具</h1><p>打个比方，你正在编写一个比较庞大的项目，期间为了方便调试，在代码的很多地方都打印了大量的日志。最近项目已经基本完成了，但是却有一个非常让人头疼的问题，之前用于调试的那些日志，在项目正式上线之后仍然会照常打印，这样不仅会降低程序的运行效率，还有可能将一些机密性的数据泄露出去。</p>
+<p>因此，最理想的情况是能够自由地控制日志的打印，当程序处于开发阶段时就让日志打印出来，当程序上线了之后就把日志屏蔽掉。</p>
+<ul>
+<li>新建一个LogUtil类</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class LogUtil &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> VERBOSE = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> DEBUG = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> INFO = <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> WARN = <span class="number">4</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> ERROR = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> NOTHING = <span class="number">6</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> level = VERBOSE;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> v(<span class="keyword">String</span> tag, <span class="keyword">String</span> msg) &#123;</span><br><span class="line">		<span class="keyword">if</span> (level &lt;= VERBOSE) &#123;</span><br><span class="line">		Log.v(tag, msg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> d(<span class="keyword">String</span> tag, <span class="keyword">String</span> msg) &#123;</span><br><span class="line">		<span class="keyword">if</span> (level &lt;= DEBUG) &#123;</span><br><span class="line">			Log.d(tag, msg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> i(<span class="keyword">String</span> tag, <span class="keyword">String</span> msg) &#123;</span><br><span class="line">		<span class="keyword">if</span> (level &lt;= INFO) &#123;</span><br><span class="line">			Log.i(tag, msg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> w(<span class="keyword">String</span> tag, <span class="keyword">String</span> msg) &#123;</span><br><span class="line">		<span class="keyword">if</span> (level &lt;= WARN) &#123;</span><br><span class="line">			Log.w(tag, msg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> e(<span class="keyword">String</span> tag, <span class="keyword">String</span> msg) &#123;</span><br><span class="line">		<span class="keyword">if</span> (level &lt;= ERROR) &#123;</span><br><span class="line">			Log.e(tag, msg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在LogUtil中先是定义了VERBOSE、DEBUG、INFO、WARN、ERROR、NOTHING这6个整型常量，并且它们对应的值都是递增的。然后又定义了一个静态变量level，可以将它的值指定为上面6个常量中的任意一个。</p>
+<p>接下来我们提供了v()、d()、i()、w()、e()这5个自定义的日志方法，在其内部分别调用了Log.v()、Log.d()、Log.i()、Log.w()、Log.e()这5个方法来打印日志，只不过在这些自定义的方法中我们都加入了一个if判断，只有当level的值小于或等于对应日志级别值的时候，才会将日志打印出来。</p>
+<p>这样就把一个自定义的日志工具创建好了，之后在项目里我们可以像使用普通的日志工具一样使用LogUtil，比如打印一行DEBUG级别的日志就可以这样写：<code>LogUtil.d(&quot;TAG&quot;, &quot;debug log&quot;);</code>，打印一行WARN级别的日志就可以这样写：<br><code>LogUtil.w(&quot;TAG&quot;, &quot;warn log&quot;);</code>，然后我们只需要修改level变量的值，就可以自由地控制日志的打印行为了。比如让level等于VERBOSE就可以把所有的日志都打印出来，让level等于WARN就可以只打印警告以上级别的日志，让level等于NOTHING就可以把所有日志都屏蔽掉。</p>
+<p>使用了这种方法之后，刚才所说的那个问题就不复存在了，你只需要在开发阶段将level指定成VERBOSE，当项目正式上线的时候将level指定成NOTHING就可以了。</p>
+<h1 id="调试Android程序"><a href="#调试Android程序" class="headerlink" title="调试Android程序"></a>调试Android程序</h1><ul>
+<li>第一种：直接使用断点，用debug模式启动，这个调试没什么好说的，打过代码都知道</li>
+<li>第二种：动态调试，正常方式启动程序，然后点击Attach debugger to Android process按钮，选中需要调试的进程就可以进入调试模式了</li>
+</ul>
+<p><img src="/2019/02/21/第十三章：进阶技巧/debug.png" alt=""></p>
+<h1 id="创建定时任务"><a href="#创建定时任务" class="headerlink" title="创建定时任务"></a>创建定时任务</h1><p>Android中的定时任务一般有两种实现方式，一种是使用Java API里提供的Timer类，一种是使用Android的Alarm机制。这两种方式在多数情况下都能实现类似的效果，但Timer有一个明显的短板，它并不太适用于那些需要长期在后台运行的定时任务。我们都知道，为了能让电池更加耐用，每种手机都会有自己的休眠策略，Android手机就会在长时间不操作的情况下自动让CPU进入到睡眠状态，这就有可能导致Timer中的定时任务无法正常运行。而Alarm则具有唤醒CPU的功能，它可以保证在大多数情况下需要执行定时任务的时候CPU都能正常工作。需要注意，这里唤醒CPU和唤醒屏幕完全不是一个概念，千万不要产生混淆。</p>
+<h2 id="Alarm机制"><a href="#Alarm机制" class="headerlink" title="Alarm机制"></a>Alarm机制</h2><p>借助AlarmManager类来实现，这个类和NotificationManager有点类似，都是通过调用Context的getSystemService()方法来获取实例的，只是这里需要传入的参数是Context.ALARM_SERVICE。</p>
+<ul>
+<li>获取一个AlarmManager的实例</li>
+</ul>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AlarmManager manager = (<span class="name">AlarmManager</span>) getSystemService(<span class="name">Context</span>.ALARM_SERVICE)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用AlarmManager的set()方法设置定时任务</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设定一个任务在十秒钟后执行</span></span><br><span class="line"><span class="keyword">long</span> triggerAtTime = SystemClock.elapsedRealtime() + <span class="number">10</span> * <span class="number">1000</span>;</span><br><span class="line">manager.<span class="built_in">set</span>(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pendingIntent);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>set()方法中需要传入的3个参数稍微有点复杂</p>
+<ul>
+<li>第一个参数是一个整型参数，用于指定AlarmManager的工作类型，有4种值可选，分别是<code>ELAPSED_REALTIME</code>、<code>ELAPSED_REALTIME_WAKEUP</code>、<code>RTC和RTC_WAKEUP</code>。其中<code>ELAPSED_REALTIME</code>表示让定时任务的触发时间从系统开机开始算起，但不会唤醒CPU。<code>ELAPSED_REALTIME_WAKEUP</code>同样表示让定时任务的触发时间从系统开机开始算起，但会唤醒CPU。<code>RTC</code>表示让定时任务的触发时间从1970年1月1日0点开始算起，但不会唤醒CPU。<code>RTC_WAKEUP</code>同样表示让定时任务的触发时间从1970年1月1日0点开始算起，但会唤醒CPU。使用<code>SystemClock.elapsedRealtime()</code>方法可以获取到系统开机至今所经历时间的毫秒数，使用<code>System.currentTimeMillis()</code>方法可以获取到1970年1月1日0点至今所经历时间的毫秒数。</li>
+<li>第二个参数就是定时任务触发的时间，以毫秒为单位。如果第一个参数使用的是<code>ELAPSED_REALTIME</code>或<code>ELAPSED_REALTIME_WAKEUP</code>，则这里传入开机至今的时间再加上延迟执行的时间。如果第一个参数使用的是<code>RTC</code>或<code>RTC_WAKEUP</code>，则这里传入1970年1月1日0点至今的时间再加上延迟执行的时间。</li>
+<li>第三个参数是一个<code>PendingIntent</code>，对于它你应该已经不会陌生了吧。这里我们一般会调用<code>getService()</code>方法或者<code>getBroadcast()</code>方法来获取一个能够执行服务或广播的<code>PendingIntent</code>。这样当定时任务被触发的时候，服务的<code>onStartCommand()</code>方法或广播接收器的<code>onReceive()</code>方法就可以得到执行。</li>
+</ul>
+</li>
+<li><p>另外一种写法</p>
+</li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">long triggerAtTime = System.currentTimeMillis() + <span class="number">10</span> * <span class="number">1000</span><span class="comment">;</span></span><br><span class="line">manager<span class="meta">.set</span>(AlarmManager.RTC_WAKEUP, triggerAtTime, pendingIntent)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="设定一个长时间在后台定试运行的服务"><a href="#设定一个长时间在后台定试运行的服务" class="headerlink" title="设定一个长时间在后台定试运行的服务"></a>设定一个长时间在后台定试运行的服务</h3><ul>
+<li>新建一个普通的服务，将触发定时任务的代码写到onStartCommand()方法中</li>
+</ul>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LongRunningService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function">IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				<span class="comment">// 在这里执行具体的逻辑操作</span></span><br><span class="line">			&#125;</span><br><span class="line">	&#125;).start();</span><br><span class="line">	AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);</span><br><span class="line">	<span class="keyword">int</span> anHour = <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>;  <span class="comment">// 这是一小时的毫秒数</span></span><br><span class="line">	<span class="keyword">long</span> triggerAtTime = SystemClock.elapsedRealtime() + anHour;</span><br><span class="line">	Intent i = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, LongRunningService.class);</span><br><span class="line">	PendingIntent pi = PendingIntent.getService(<span class="keyword">this</span>, <span class="number">0</span>, i, <span class="number">0</span>);</span><br><span class="line">	manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);</span><br><span class="line">	<span class="function"><span class="keyword">return</span> <span class="keyword">super</span>.<span class="title">onStartCommand</span><span class="params">(intent, flags, startId)</span></span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先是在onStartCommand()方法中开启了一个子线程，这样就可以在这里执行具体的逻辑操作了。之所以要在子线程里执行逻辑操作，是因为逻辑操作也是需要耗时的，如果放在主线程里执行可能会对定时任务的准确性造成轻微的影响。</p>
+<p>创建线程之后的代码就是我们刚刚讲解的Alarm机制的用法了，先是获取到了AlarmManager的实例，然后定义任务的触发时间为一小时后，再使用PendingIntent指定处理定时任务的服务为LongRunningService，最后调用set()方法完成设定。<br>这样我们就将一个长时间在后台定时运行的服务成功实现了。因为一旦启动了LongRunningService，就会在onStartCommand()方法里设定一个定时任务，这样一小时后将会再次启动LongRunningService，从而也就形成了一个永久的循环，保证LongRunningService的onStartCommand()方法可以每隔一小时就执行一次。</p>
+<ul>
+<li>启动定时任务</li>
+</ul>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Intent</span> <span class="keyword">intent</span> = new <span class="keyword">Intent</span>(context, LongRunningService.<span class="keyword">class</span>);</span><br><span class="line">context.startService(<span class="keyword">intent</span>);</span><br></pre></td></tr></table></figure>
+<p>从Android 4.4系统开始，Alarm任务的触发时间将会变得不准确，有可能会延迟一段时间后任务才能得到执行。这并不是个bug，而是系统在耗电性方面进行的优化。系统会自动检测目前有多少Alarm任务存在，然后将触发时间相近的几个任务放在一起执行，这就可以大幅度地减少CPU被唤醒的次数，从而有效延长电池的使用时间。<br>当然，如果你要求Alarm任务的执行时间必须准确无误，Android仍然提供了解决方案。使用AlarmManager的setExact()方法来替代set()方法，就基本上可以保证任务能够准时执行了。</p>
+<p>如果想准确无误的启动就可以使用<code>setExact()</code>方法，基本能够保证任务准确执行</p>
+<h2 id="Doze模式"><a href="#Doze模式" class="headerlink" title="Doze模式"></a>Doze模式</h2><p>在Android 6.0系统中，谷歌加入了一个全新的Doze模式，从而可以极大幅度地延长电池的使用寿命。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>当用户的设备是Android 6.0或以上系统时，如果该设备未插接电源，处于静止状态（Android 7.0中删除了这一条件），且屏幕关闭了一段时间之后，就会进入到Doze模式。在Doze模式下，系统会对CPU、网络、Alarm等活动进行限制，从而延长了电池的使用寿命。</p>
+<p>当然，系统并不会一直处于Doze模式，而是会间歇性地退出Doze模式一小段时间，在这段时间中，应用就可以去完成它们的同步操作、Alarm任务，等等。<br><img src="/2019/02/21/第十三章：进阶技巧/Doze.jpg" alt=""></p>
+<p>随着设备进入Doze模式的时间越长，间歇性地退出Doze模式的时间间隔也会越长。因为如果设备长时间不使用的话，是没必要频繁退出Doze模式来执行同步等操作的，Android在这些细节上的把控使得电池寿命进一步得到了延长。</p>
+<p>Doze模式下</p>
+<ul>
+<li>网络访问被禁止。</li>
+<li>系统忽略唤醒CPU或者屏幕操作。</li>
+<li>系统不再执行WIFI扫描。</li>
+<li>系统不再执行同步服务。</li>
+<li>Alarm任务将会在下次退出Doze模式的时候执行。</li>
+</ul>
+<p>最后一条表示在这种状态下Alarm任务会变得不准时，如果有非常特殊的需求让定时任务在Doze模式下也运行，Android提供了解决方案，调用AlarmManager的setAndAllowWhileIdle()或setExactAndAllowWhileIdle()方法就能让定时任务即使在Doze模式下也能正常执行了，这两个方法之间的区别和set()、setExact()方法之间的区别是一样的。</p>
+<h1 id="多窗口模式编程"><a href="#多窗口模式编程" class="headerlink" title="多窗口模式编程"></a>多窗口模式编程</h1><p>Android 7.0系统中却引入了一个非常有特色的功能——多窗口模式，它允许我们在同一个屏幕中同时打开两个应用程序。据我了解目前的大多数用户不知道这个功能，我本人也极少数时候会用到。前面写的程序不需要多写代码来支持这种模式。</p>
+<p>在多窗口模式下，整个应用的界面会缩小很多，那么编写程序时就应该多考虑使用match_parent属性、RecyclerView、ListView、ScrollView等控件，来让应用的界面能够更好地适配各种不同尺寸的屏幕，尽量不要出现屏幕尺寸变化过大时界面就无法正常显示的情况。</p>
+<h2 id="多窗口模式下的生命周期"><a href="#多窗口模式下的生命周期" class="headerlink" title="多窗口模式下的生命周期"></a>多窗口模式下的生命周期</h2><p>多窗口模式并不会改变活动原有的生命周期，只是会将用户最近交互过的那个活动设置为运行状态，而将多窗口模式下另外一个可见的活动设置为暂停状态。如果这时用户又去和暂停的活动进行交互，那么该活动就变成运行状态，之前处于运行状态的活动变成暂停状态。</p>
+<p>这里可以自己把两个Demo的生命周期的函数加入log来体验这种窗口模式下的生命周期</p>
+<p>编写程序的时候，就可以将一些关键性的点考虑进去了。比如说，在多窗口模式下，用户仍然可以看到处于暂停状态的应用，那么像视频播放器之类的应用在此时就应该能继续播放视频才对。因此，我们最好不要在活动的onPause()方法中去处理视频播放器的暂停逻辑，而是应该在onStop()方法中去处理，并且在onStart()方法恢复视频的播放。</p>
+<ul>
+<li>针对于进入多窗口模式时活动会被重新创建，如果你想改变这一默认行为，可以在AndroidManifest.xml中对活动进行如下配置</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">".MainActivity"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:label</span>=<span class="string">"Fruits"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:configChanges</span>=<span class="string">"orientation|keyboardHidden|screenSize|screenLayout"</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>加入了这行配置之后，不管是进入多窗口模式，还是横竖屏切换，活动都不会被重新创建，而是会将屏幕发生变化的事件通知到Activity的onConfigurationChanged()方法当中。因此，如果你想在屏幕发生变化的时候进行相应的逻辑处理，那么在活动中重写onConfigurationChanged()方法即可。</p>
+<h2 id="禁用多窗口模式"><a href="#禁用多窗口模式" class="headerlink" title="禁用多窗口模式"></a>禁用多窗口模式</h2><p>在AndroidManifest.xml的<code>&lt;application&gt;</code>或<code>&lt;activity&gt;</code>标签中加入如下属性即可</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:resizeableActivity=[<span class="string">"true"</span> <span class="string">| "</span>false<span class="string">"]</span></span><br></pre></td></tr></table></figure>
+<p>其中，true表示应用支持多窗口模式，false表示应用不支持多窗口模式，如果不配置这个属性，那么默认值为true。</p>
+<p>虽说<code>android:resizeableActivity</code>这个属性的用法很简单，但是它还存在着一个问题，就是这个属性只有当项目的<code>targetSdkVersion</code>指定成24或者更高的时候才会有用，否则这个属性是无效的。那么比如说我们将项目的<code>targetSdkVersion</code>指定成23，这个时候尝试进入多窗口模式，会提示你此App在分屏模式下可能会无法正常工作，但是还是会进入分屏模式，很多的老项目，它们的targetSdkVersion都没有指定到24，针对这种情况Android规定，如果项目指定的targetSdkVersion低于24，并且活动是不允许横竖屏切换的，那么该应用也将不支持多窗口模式。</p>
+<ul>
+<li>让应用不支持横竖屏切换</li>
+</ul>
+<p>在AndroidManifest的<code>&lt;activity&gt;</code>中加入配置</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:screenOrientation=[<span class="string">"portrait"</span> <span class="string">| "</span>landscape<span class="string">"]</span></span><br></pre></td></tr></table></figure>
+<p>portrait表示活动只支持竖屏，<code>landscape</code>表示活动只支持横屏。当然<code>android: screenOrientation</code>属性中还有很多其他可选值，不过最常用的就是<code>portrait</code>和<code>landscape</code>了。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">".MainActivity"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:label</span>=<span class="string">"Fruits"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:screenOrientation</span>=<span class="string">"portrait"</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h1><p>Lambda表达式却最低兼容到Android 2.3系统，基本上可以算是覆盖所有的Android手机，这是Java8的新特性。</p>
+<p>Lambda 表达式本质上是一种匿名方法，它既没有方法名，也即没有访问修饰符和返回值类型，使用它来编写代码将会更加简洁，也更加易读。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>在app/build.gradle中添加配置即可</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">	...</span><br><span class="line">	defaultConfig &#123;</span><br><span class="line">		...</span><br><span class="line">		jackOptions<span class="selector-class">.enabled</span> = true</span><br><span class="line">	&#125;</span><br><span class="line">	compileOptions &#123;</span><br><span class="line">		sourceCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">		targetCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="开启一个新线程"><a href="#开启一个新线程" class="headerlink" title="开启一个新线程"></a>开启一个新线程</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Thread(<span class="function"><span class="params">()</span> -&gt;</span> &#123;</span><br><span class="line">	<span class="regexp">//</span> 处理具体的逻辑</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+<p>凡是这种只有一个待实现方法的接口，都可以使用Lambda表达式的写法。</p>
+<h3 id="自定义一个接口"><a href="#自定义一个接口" class="headerlink" title="自定义一个接口"></a>自定义一个接口</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>MyListener &#123;</span><br><span class="line">	String doSomething(String a, int b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现方法</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MyListener listener = (<span class="keyword">String</span> a, <span class="keyword">int</span> b) -&gt; &#123;</span><br><span class="line">	<span class="keyword">String</span> result = a + b;</span><br><span class="line">	<span class="built_in">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Java还可以根据上下文自动推断出Lambda表达式中的参数类型，因此上面的代码也可以简化成如下写法</li>
+</ul>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MyListener listener = <span class="function"><span class="params">(a, b)</span> -&gt;</span> &#123;</span><br><span class="line">	String result = a + b;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Java将会自动推断出参数a是String类型，参数b是int类型，从而使得我们的代码变得更加精简。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> hello(MyListener listener) &#123;</span><br><span class="line">	<span class="keyword">String</span> a = <span class="string">"Hello Lambda"</span>;</span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">1024</span>;</span><br><span class="line">	<span class="keyword">String</span> result = listener.doSomething(a, b);</span><br><span class="line">	Log.d(<span class="string">"TAG"</span>, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在调用hello()这个方法的时候就可以这样写</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="function"><span class="params">(a, b)</span> -&gt;</span> &#123;</span><br><span class="line">	String result = a + b;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>其实只要是符合接口中只有一个待实现方法这个规则的功能，都是可以使用Lambda表达式来编写的。除了刚才举例说明的开启子线程之外，还有像设置点击事件之类的功能也是非常适合使用Lambda表达式的。</p>
+<h3 id="设置点击事件"><a href="#设置点击事件" class="headerlink" title="设置点击事件"></a>设置点击事件</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Button </span><span class="keyword">button </span>= (<span class="keyword">Button) </span>findViewById(R.id.<span class="keyword">button);</span></span><br><span class="line"><span class="keyword">button.setOnClickListener((v) </span>-&gt; &#123;</span><br><span class="line">	// 处理点击事件</span><br><span class="line">&#125;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>当接口的待实现方法有且只有一个参数的时候，我们还可以进一步简化，将参数外面的括号去掉</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Button </span><span class="keyword">button </span>= (<span class="keyword">Button) </span>findViewById(R.id.<span class="keyword">button);</span></span><br><span class="line"><span class="keyword">button.setOnClickListener(v </span>-&gt; &#123;</span><br><span class="line">	// 处理点击事件</span><br><span class="line">&#125;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>我有点不适应这种写法…</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果我的文章对你有帮助，你可以自愿进行捐赠</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ZaneCode6574 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="ZaneCode6574 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/进阶/" rel="tag"># 进阶</a>
+          
+            <a href="/tags/技巧/" rel="tag"># 技巧</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/额外篇：Git相关/" rel="next" title="额外篇：Git相关">
+                <i class="fa fa-chevron-left"></i> 额外篇：Git相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/23/第一章：Flutter基础知识/" rel="prev" title="第一章：Flutter基础知识">
+                第一章：Flutter基础知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZaneCode6574</p>
+              <p class="site-description motion-element" itemprop="description">这是ZaneCode6574的博客，用来记录我的轨迹和部分动态</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zanecode6574" title="GitHub &rarr; https://github.com/zanecode6574" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zanecode6574@gmail.com" title="E-Mail &rarr; mailto:zanecode6574@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Codeeeeeeeeee" title="Weibo &rarr; https://weibo.com/Codeeeeeeeeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://pan.234432.xyz" title="网盘 &rarr; http://pan.234432.xyz" rel="noopener" target="_blank"><i class="fa fa-fw fa-sitemap"></i>网盘</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#全局获取Context"><span class="nav-number">1.</span> <span class="nav-text">全局获取Context</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第九章的HttpUtil类"><span class="nav-number">1.1.</span> <span class="nav-text">第九章的HttpUtil类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六章使用LitePal操作数据库"><span class="nav-number">1.2.</span> <span class="nav-text">第六章使用LitePal操作数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Intent传递对象"><span class="nav-number">2.</span> <span class="nav-text">使用Intent传递对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Serializable方式"><span class="nav-number">2.1.</span> <span class="nav-text">Serializable方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parcelable方式"><span class="nav-number">2.2.</span> <span class="nav-text">Parcelable方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定制自己的日志工具"><span class="nav-number">3.</span> <span class="nav-text">定制自己的日志工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调试Android程序"><span class="nav-number">4.</span> <span class="nav-text">调试Android程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建定时任务"><span class="nav-number">5.</span> <span class="nav-text">创建定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Alarm机制"><span class="nav-number">5.1.</span> <span class="nav-text">Alarm机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设定一个长时间在后台定试运行的服务"><span class="nav-number">5.1.1.</span> <span class="nav-text">设定一个长时间在后台定试运行的服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Doze模式"><span class="nav-number">5.2.</span> <span class="nav-text">Doze模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">5.2.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多窗口模式编程"><span class="nav-number">6.</span> <span class="nav-text">多窗口模式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多窗口模式下的生命周期"><span class="nav-number">6.1.</span> <span class="nav-text">多窗口模式下的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用多窗口模式"><span class="nav-number">6.2.</span> <span class="nav-text">禁用多窗口模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lambda表达式"><span class="nav-number">7.</span> <span class="nav-text">Lambda表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">7.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">7.2.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启一个新线程"><span class="nav-number">7.2.1.</span> <span class="nav-text">开启一个新线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义一个接口"><span class="nav-number">7.2.2.</span> <span class="nav-text">自定义一个接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">7.2.3.</span> <span class="nav-text">举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置点击事件"><span class="nav-number">7.2.4.</span> <span class="nav-text">设置点击事件</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZaneCode6574</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">579k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">8:46</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'xKfPPGoNPXh0K9Dh2BNweXq7-gzGzoHsz',
+        appKey: 'pmn3qfbAaEDbI2yWiYC2SqyY',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+</html>

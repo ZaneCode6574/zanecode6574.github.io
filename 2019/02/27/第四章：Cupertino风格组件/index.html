@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "cc8014cb"
+    });
+  daovoice('update');
+  </script>
+
+
+  <meta name="description" content="简介Cupertino风格组件即iOS风格组件，主要有CupertinoTabBar、CupertinoPageScaffold、CupertinoTabScaffold、CupertinoTabView等。目前组件库还没有Material Design风格组件丰富。但作为一种补充，可以根据实际场景选择使用即可。 本章所涉及的组件及内容有：  CupertinoActivityIndicator组">
+<meta name="keywords" content="Cupertino">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四章：Cupertino风格组件">
+<meta property="og:url" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/index.html">
+<meta property="og:site_name" content="ZaneCode6574的博客">
+<meta property="og:description" content="简介Cupertino风格组件即iOS风格组件，主要有CupertinoTabBar、CupertinoPageScaffold、CupertinoTabScaffold、CupertinoTabView等。目前组件库还没有Material Design风格组件丰富。但作为一种补充，可以根据实际场景选择使用即可。 本章所涉及的组件及内容有：  CupertinoActivityIndicator组">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoActivityIndicator.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoActivityIndicatorDemo.png">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoAlertDialog.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoAlertDialogDemo.png">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoButton.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoButton.png">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoTabScaffold.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoTabBar.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoTabBarShow.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoTabView.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoPageScaffold.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoNavigationBar.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoNavigationBarShow.JPG">
+<meta property="og:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/Cupertino导航组件合集Demo.png">
+<meta property="og:updated_time" content="2019-02-27T09:41:31.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第四章：Cupertino风格组件">
+<meta name="twitter:description" content="简介Cupertino风格组件即iOS风格组件，主要有CupertinoTabBar、CupertinoPageScaffold、CupertinoTabScaffold、CupertinoTabView等。目前组件库还没有Material Design风格组件丰富。但作为一种补充，可以根据实际场景选择使用即可。 本章所涉及的组件及内容有：  CupertinoActivityIndicator组">
+<meta name="twitter:image" content="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/CupertinoActivityIndicator.JPG">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZaneCode6574的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>第四章：Cupertino风格组件 | ZaneCode6574的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZaneCode6574的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">时光机</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">第四章：Cupertino风格组件
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-27 16:15:10 / 修改时间：17:41:31" itemprop="dateCreated datePublished" datetime="2019-02-27T16:15:10+08:00">2019-02-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/27/第四章：Cupertino风格组件/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/27/第四章：Cupertino风格组件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">6 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Cupertino风格组件即iOS风格组件，主要有CupertinoTabBar、CupertinoPageScaffold、CupertinoTabScaffold、CupertinoTabView等。目前组件库还没有Material Design风格组件丰富。但作为一种补充，可以根据实际场景选择使用即可。</p>
+<p>本章所涉及的组件及内容有：</p>
+<ul>
+<li>CupertinoActivityIndicator组件</li>
+<li>CupertinoAlertDialog对话框组件</li>
+<li>CupertinoButton按钮组件</li>
+<li>Cupertino导航组件集（CupertinoTabBar、CupertinoPageScaffold、CupertinoTabScaffold、CupertinoTabView等）</li>
+</ul>
+<a id="more"></a>
+<h1 id="CupertinoActivityIndicator组件"><a href="#CupertinoActivityIndicator组件" class="headerlink" title="CupertinoActivityIndicator组件"></a>CupertinoActivityIndicator组件</h1><p>CupertinoActivityIndicator是一个IOS风格的loading指示器，通常用在加载等待的效果展示</p>
+<p><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoActivityIndicator.JPG" alt=""></p>
+<ul>
+<li>导入Cupertino组件库</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:flutter/cupertino.dart';</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>代码</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"></span><br><span class="line">void main()&#123;</span><br><span class="line">  runApp(<span class="type">MyApp</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'CupertinoActivityIndicator</span>示例',</span><br><span class="line">      home: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'CupertinoActivityIndicator</span>示例'),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="type">Center</span>(</span><br><span class="line">          child: <span class="type">CupertinoActivityIndicator</span>(</span><br><span class="line">            radius: <span class="number">60.0</span>, <span class="comment">//值越大加载的图形越大</span></span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoActivityIndicatorDemo.png" alt=""></p>
+<h1 id="CupertinoAlertDialog对话框组件"><a href="#CupertinoAlertDialog对话框组件" class="headerlink" title="CupertinoAlertDialog对话框组件"></a>CupertinoAlertDialog对话框组件</h1><p>CupertinoAlertDialog和Material Design风格里的AlertDialog对话框相似，只是样式不同。共同点是不仅仅有提示内容，还有一些操作按钮，如确定和取消等。内容部分可以用SingleChildScrollView进行包裹。操作按钮建议用CupertinoDialogAction组件，这样显示更协调一些。</p>
+<p><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoAlertDialog.JPG" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"></span><br><span class="line">void main()&#123;</span><br><span class="line">  runApp(<span class="type">MyApp</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'CupertinoAlertDialog</span>示例',</span><br><span class="line">      home: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'CupertinoAlertDialog</span>示例'),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="type">Center</span>(</span><br><span class="line">          child: <span class="type">CupertinoAlertDialog</span>(</span><br><span class="line">            title: <span class="type">Text</span>('提示'),</span><br><span class="line">            content: <span class="type">SingleChildScrollView</span>(</span><br><span class="line">              child: <span class="type">ListBody</span>(</span><br><span class="line">                children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">                  <span class="type">Text</span>('是否要删除'),</span><br><span class="line">                  <span class="type">Text</span>('一旦删除不可恢复'),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">            actions: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">              <span class="type">CupertinoDialogAction</span>(</span><br><span class="line">                child: <span class="type">Text</span>('确定'),</span><br><span class="line">                onPressed: ()&#123;&#125;,</span><br><span class="line">              ),</span><br><span class="line"></span><br><span class="line">              <span class="type">CupertinoDialogAction</span>(</span><br><span class="line">                child: <span class="type">Text</span>('取消'),</span><br><span class="line">                onPressed: ()&#123;&#125;,</span><br><span class="line">              ),</span><br><span class="line">            ],</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoAlertDialogDemo.png" alt=""></p>
+<h1 id="CupertinoButton按钮组件"><a href="#CupertinoButton按钮组件" class="headerlink" title="CupertinoButton按钮组件"></a>CupertinoButton按钮组件</h1><p>IOS风格按钮<br><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoButton.JPG" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"></span><br><span class="line">void main()&#123;</span><br><span class="line">  runApp(<span class="type">MyApp</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'CupertinoButton</span>示例',</span><br><span class="line">      home: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'CupertinoButton</span>示例'),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="type">Center</span>(</span><br><span class="line">          child: <span class="type">CupertinoButton</span>(child: <span class="type">Text</span>('按钮'), color: <span class="type">Colors</span>.blue,onPressed: ()&#123;&#125;),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoButton.png" alt=""></p>
+<p>这里我发现，onPressed后面如果是null，按钮就会默认不可点击变成灰色，颜色代码也将失效</p>
+<h1 id="Cupertino导航组件集"><a href="#Cupertino导航组件集" class="headerlink" title="Cupertino导航组件集"></a>Cupertino导航组件集</h1><p>Cupertino导航相关的组件也非常丰富。由于它们之间有关联关系，所以本节把导航相关的组件放在一起说明。下面分别说明这些组件的属性及描述。</p>
+<ol>
+<li><p>CupertinoTabScaffold选项卡组件<br><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoTabScaffold.JPG" alt=""></p>
+</li>
+<li><p>CupertinoTabBar选项卡按钮<br><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoTabBar.JPG" alt=""><br><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoTabBarShow.JPG" alt=""></p>
+<p> 选项卡按钮，通常由BottomNavigationBarItem组成包含图标加文本</p>
+</li>
+<li><p>CupertinoTabView<br><img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoTabView.JPG" alt=""></p>
+<p> 选项卡视图</p>
+</li>
+<li><p>CupertinoPageScaffold</p>
+<p> 页面的基本布局结构，包含内容和导航栏<br> <img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoPageScaffold.JPG" alt=""></p>
+</li>
+<li><p>CupertinoNavigationBar</p>
+<p> 导航栏结构组件<br> <img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoNavigationBar.JPG" alt=""><br> <img src="/2019/02/27/第四章：Cupertino风格组件/CupertinoNavigationBarShow.JPG" alt=""></p>
+</li>
+</ol>
+<h2 id="导航栏综合示例"><a href="#导航栏综合示例" class="headerlink" title="导航栏综合示例"></a>导航栏综合示例</h2><ul>
+<li><p>添加最外层导航选项卡，使用CupertinoTabScaffold组件，它有两个属性tabBar和tabBuilder，分别用来绑定底部选项卡及所对应的视图</p>
+</li>
+<li><p>添加底部选项卡按钮，使用CupertinoTabBar组件，需要制定选项卡项，每个项包含一个图标及一个文本</p>
+</li>
+</ul>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">tabBar:</span> CupertinoTabBar(</span><br><span class="line"><span class="symbol">	items:</span>[</span><br><span class="line">		BottomNavigationBarItem(</span><br><span class="line">			<span class="comment">//指定图标</span></span><br><span class="line">			<span class="comment">//指定文本</span></span><br><span class="line">		),</span><br><span class="line">		<span class="comment">//根据需要添加更多按钮</span></span><br><span class="line">	],</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每个选项卡需要绑定一个视图，使用CupertinoTabView组件</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tabBuilder:(context,index)&#123;</span><br><span class="line">	<span class="comment">//选项卡绑定的视图</span></span><br><span class="line">	<span class="keyword">return</span> CupertinoTabView(</span><br><span class="line">		builder:(context)&#123;</span><br><span class="line">			switch(index)&#123;</span><br><span class="line">				case <span class="number">0</span>:</span><br><span class="line">					<span class="keyword">return</span> HomePage();</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				case <span class="number">1</span>:</span><br><span class="line">					<span class="keyword">return</span> ChatPage();</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">default</span>:</span><br><span class="line">					<span class="keyword">return</span> Container();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编写一个选项卡页面即主页，命名为HomePage,页面需要一个CupertinoPageScaffold来包裹，指定页面顶部导航内容及内容区域</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span></span>&#123;</span><br><span class="line">	<span class="meta">@override</span></span><br><span class="line">	<span class="type">Widget</span> build()&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="type">CupertinoPageScaffold</span>(</span><br><span class="line">			navigationBar:</span><br><span class="line">				<span class="type">CupertinoNavigationBar</span>(</span><br><span class="line">					<span class="comment">//只加标题</span></span><br><span class="line">				),</span><br><span class="line">				child:<span class="type">Center</span>(</span><br><span class="line">					<span class="comment">//内容区域</span></span><br><span class="line">				),</span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编写第二个选项卡页面即聊天页面，将其命名为ChatPage。页面需要一个CupertinoPageScaffold组件来包裹，指定页面顶部导航内容（包含左中右三块），及内容区域。</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">CupertinoPageScaffold</span>(</span><br><span class="line">      navigationBar: <span class="type">CupertinoNavigationBar</span>(</span><br><span class="line">        <span class="comment">//导航栏 包含左中右三部分</span></span><br><span class="line">      ),</span><br><span class="line">      child: <span class="type">Center</span>(</span><br><span class="line">        <span class="comment">//内容区域</span></span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整代码</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"></span><br><span class="line">void main()&#123;</span><br><span class="line">  runApp(<span class="type">MyApp</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'Capertino</span>导航栏组件集',</span><br><span class="line">      theme: <span class="type">ThemeData</span>.light(),</span><br><span class="line">      home: <span class="type">MyPage</span>(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span></span>&#123;</span><br><span class="line">  _MyPageState createState=&gt;_MyPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyPageState</span> <span class="keyword">extends</span> <span class="title">State&lt;MyPage&gt;</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="comment">//最外层导航栏选项卡</span></span><br><span class="line">    <span class="keyword">return</span> <span class="type">CupertinoTabScaffold</span>(</span><br><span class="line">      <span class="comment">//底部选项卡</span></span><br><span class="line">      tabBar: <span class="type">CupertinoTabBar</span>(backgroundColor: <span class="type">CupertinoColors</span>.lightBackgroundGray,items: [</span><br><span class="line">        <span class="comment">//选项卡项，包含图标及文字</span></span><br><span class="line">        <span class="type">BottomNavigationBarItem</span>(</span><br><span class="line">          icon: <span class="type">Icon</span>(<span class="type">CupertinoIcons</span>.home),</span><br><span class="line">          title: <span class="type">Text</span>('主页')</span><br><span class="line">        ),</span><br><span class="line"></span><br><span class="line">        <span class="type">BottomNavigationBarItem</span>(</span><br><span class="line">            icon: <span class="type">Icon</span>(<span class="type">CupertinoIcons</span>.conversation_bubble),</span><br><span class="line">            title: <span class="type">Text</span>('聊天')</span><br><span class="line">        ),</span><br><span class="line"></span><br><span class="line">      ]),</span><br><span class="line"></span><br><span class="line">      tabBuilder: (context,index)&#123;</span><br><span class="line">        <span class="comment">//选项卡绑定的视图</span></span><br><span class="line">        <span class="keyword">return</span> <span class="type">CupertinoTabView</span>(</span><br><span class="line">          builder: (context)&#123;</span><br><span class="line">            switch(index)&#123;</span><br><span class="line">              <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="type">HomePage</span>();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">              <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="type">ChatPage</span>();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">              <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="type">Container</span>();</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">        );</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">CupertinoPageScaffold</span>(</span><br><span class="line">      navigationBar: <span class="type">CupertinoNavigationBar</span>(</span><br><span class="line">        middle: <span class="type">Text</span>('主页'),</span><br><span class="line">      ),</span><br><span class="line">      child: <span class="type">Center</span>(</span><br><span class="line">        child: <span class="type">Text</span>('主页',style: <span class="type">Theme</span>.of(context).textTheme.button,),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">CupertinoPageScaffold</span>(</span><br><span class="line">      navigationBar: <span class="type">CupertinoNavigationBar</span>(</span><br><span class="line">        <span class="comment">//导航栏，包含左中右三部分</span></span><br><span class="line">        middle: <span class="type">Text</span>('聊天界面'),</span><br><span class="line">        trailing: <span class="type">Icon</span>(<span class="type">CupertinoIcons</span>.add), <span class="comment">//右侧</span></span><br><span class="line">        leading: <span class="type">Icon</span>(<span class="type">CupertinoIcons</span>.back), <span class="comment">//左侧</span></span><br><span class="line">      ),</span><br><span class="line">      child: <span class="type">Center</span>(</span><br><span class="line">        child: <span class="type">Text</span>('聊天面板',style: <span class="type">Theme</span>.of(context).textTheme.button,),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/27/第四章：Cupertino风格组件/Cupertino导航组件合集Demo.png" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果我的文章对你有帮助，你可以自愿进行捐赠</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ZaneCode6574 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="ZaneCode6574 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cupertino/" rel="tag"># Cupertino</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/24/第三章：Material-Design风格组件/" rel="next" title="第三章：Material Design风格组件">
+                <i class="fa fa-chevron-left"></i> 第三章：Material Design风格组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/01/第五章：页面布局/" rel="prev" title="第五章：页面布局">
+                第五章：页面布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZaneCode6574</p>
+              <p class="site-description motion-element" itemprop="description">这是ZaneCode6574的博客，用来记录我的轨迹和部分动态</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zanecode6574" title="GitHub &rarr; https://github.com/zanecode6574" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zanecode6574@gmail.com" title="E-Mail &rarr; mailto:zanecode6574@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Codeeeeeeeeee" title="Weibo &rarr; https://weibo.com/Codeeeeeeeeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://pan.234432.xyz" title="网盘 &rarr; http://pan.234432.xyz" rel="noopener" target="_blank"><i class="fa fa-fw fa-sitemap"></i>网盘</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CupertinoActivityIndicator组件"><span class="nav-number">2.</span> <span class="nav-text">CupertinoActivityIndicator组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CupertinoAlertDialog对话框组件"><span class="nav-number">3.</span> <span class="nav-text">CupertinoAlertDialog对话框组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CupertinoButton按钮组件"><span class="nav-number">4.</span> <span class="nav-text">CupertinoButton按钮组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cupertino导航组件集"><span class="nav-number">5.</span> <span class="nav-text">Cupertino导航组件集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导航栏综合示例"><span class="nav-number">5.1.</span> <span class="nav-text">导航栏综合示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZaneCode6574</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">579k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">8:46</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'xKfPPGoNPXh0K9Dh2BNweXq7-gzGzoHsz',
+        appKey: 'pmn3qfbAaEDbI2yWiYC2SqyY',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+</html>
