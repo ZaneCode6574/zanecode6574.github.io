@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -122,31 +122,31 @@
 <meta name="keywords" content="数据储存,持久化技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第六章：数据储存全方案-详解持久化技术">
-<meta property="og:url" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/index.html">
+<meta property="og:url" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/index.html">
 <meta property="og:site_name" content="ZaneCode6574的博客">
 <meta property="og:description" content="持久化技术介绍数据持久化就是指将那些内存中的瞬时数据保存到存储设备中，保证即使在手机或电脑关机的情况下，这些数据仍然不会丢失。保存在内存中的数据是处于瞬时状态的，而保存在存储设备中的数据是处于持久状态的，持久化技术则提供了一种机制可以让数据在瞬时状态和持久状态之间进行转换。 Android系统中主要提供了三种方式用于简单实现数据持久化功能，除了这3种方式之外，你还可以将数据保存在手机的SD卡中，不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/fileManagerLocation.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/FileWrite.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/FileRead.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/SharedPreferencesWrite.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/SharedPreferencesRead.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/rememberPass.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteUpgrade.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteInsert.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteUpdate.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/query.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteQuery.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalUpdate.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalAdd.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalUpdate1.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalUpdate2.png">
-<meta property="og:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalDelete.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/fileManagerLocation.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/FileWrite.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/FileRead.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/SharedPreferencesWrite.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/SharedPreferencesRead.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/rememberPass.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteUpgrade.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteInsert.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteUpdate.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/query.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/sqliteQuery.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalUpdate.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalAdd.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalUpdate1.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalUpdate2.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/litepalDelete.png">
 <meta property="og:updated_time" content="2019-01-19T17:08:05.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第六章：数据储存全方案-详解持久化技术">
 <meta name="twitter:description" content="持久化技术介绍数据持久化就是指将那些内存中的瞬时数据保存到存储设备中，保证即使在手机或电脑关机的情况下，这些数据仍然不会丢失。保存在内存中的数据是处于瞬时状态的，而保存在存储设备中的数据是处于持久状态的，持久化技术则提供了一种机制可以让数据在瞬时状态和持久状态之间进行转换。 Android系统中主要提供了三种方式用于简单实现数据持久化功能，除了这3种方式之外，你还可以将数据保存在手机的SD卡中，不">
-<meta name="twitter:image" content="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/fileManagerLocation.png">
+<meta name="twitter:image" content="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/fileManagerLocation.png">
 
 
 
@@ -155,7 +155,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/">
+  <link rel="canonical" href="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/">
 
 
 
@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/01/19/第六章：数据储存全方案-详解持久化技术/">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/01/19/第六章：数据储存全方案-详解持久化技术/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZaneCode6574">
@@ -999,7 +999,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1020,7 +1020,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1129,7 +1135,25 @@
                     
                       
                     
-                    <span class="site-state-item-count">44</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1251,7 +1275,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">579k</span>
+    <span title="站点总字数">598k</span>
   
 
   
@@ -1260,12 +1284,12 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">8:46</span>
+    <span title="站点阅读时长">9:04</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -1864,5 +1888,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
 </html>

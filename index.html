@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -122,7 +122,7 @@
 <meta name="keywords" content="ZaneCode6574,博客,hexo">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ZaneCode6574的博客">
-<meta property="og:url" content="https://blog.234432.xyz/index.html">
+<meta property="og:url" content="https://zanecode6574.github.io/index.html">
 <meta property="og:site_name" content="ZaneCode6574的博客">
 <meta property="og:description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
 <meta property="og:locale" content="zh-CN">
@@ -137,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.234432.xyz/">
+  <link rel="canonical" href="https://zanecode6574.github.io/">
 
 
 
@@ -397,7 +397,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/03/08/第六章：手势检测/">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/12/13/Predicting-Long-Term-Skeletal-Motions-by-a-Spatio-Temporal-Hierarchical-Recurrent-Network/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZaneCode6574">
@@ -417,7 +417,1532 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/08/第六章：手势检测/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第六章：手势检测</a>
+                <a href="/2019/12/13/Predicting-Long-Term-Skeletal-Motions-by-a-Spatio-Temporal-Hierarchical-Recurrent-Network/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">Predicting Long-Term Skeletal Motions by a Spatio-Temporal Hierarchical Recurrent Network</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-13 21:31:51 / 修改时间：21:34:02" itemprop="dateCreated datePublished" datetime="2019-12-13T21:31:51+08:00">2019-12-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Papers/" itemprop="url" rel="index"><span itemprop="name">Papers</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/13/Predicting-Long-Term-Skeletal-Motions-by-a-Spatio-Temporal-Hierarchical-Recurrent-Network/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/12/13/Predicting-Long-Term-Skeletal-Motions-by-a-Spatio-Temporal-Hierarchical-Recurrent-Network/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">124</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Github link: <a href="https://zanecode6574.github.io/ST-Hierarchical-Recurrent-Network/">https://zanecode6574.github.io/ST-Hierarchical-Recurrent-Network/</a></p>
+<p>Paper link: <a href="https://arxiv.org/abs/1911.02404" target="_blank" rel="noopener">https://arxiv.org/abs/1911.02404</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/10/22/计算机组成与体系结构-第二章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/22/计算机组成与体系结构-第二章/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">计算机组成与体系结构-第二章</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-22 17:13:06" itemprop="dateCreated datePublished" datetime="2019-10-22T17:13:06+08:00">2019-10-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-29 16:15:28" itemprop="dateModified" datetime="2019-10-29T16:15:28+08:00">2019-10-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机组成与体系结构/" itemprop="url" rel="index"><span itemprop="name">计算机组成与体系结构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/22/计算机组成与体系结构-第二章/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/22/计算机组成与体系结构-第二章/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="2-1-计算机简史"><a href="#2-1-计算机简史" class="headerlink" title="2.1 计算机简史"></a>2.1 计算机简史</h1><h2 id="2-1-1-第一代：真空管"><a href="#2-1-1-第一代：真空管" class="headerlink" title="2.1.1 第一代：真空管"></a>2.1.1 第一代：真空管</h2><ul>
+<li>ENIAC</li>
+<li>冯·诺伊曼机：将程序储存在存储器中，通过修改存储器中得到值就可以修改程序，解决了ENIAC修改程序极其繁琐的问题<ul>
+<li>主存储器：存储数据和指令</li>
+<li>算术逻辑单元（ALU）：处理二进制数</li>
+<li>控制器：解释内存中的指令并执行</li>
+<li>由控制器操纵的输入输出设备(I/O)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/10/22/计算机组成与体系结构-第二章/structure_of_IAS.png" alt=""></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/10/22/计算机组成与体系结构-第二章/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/10/22/数据结构与算法-第四章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/22/数据结构与算法-第四章/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">数据结构与算法-第四章</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-22 10:38:13" itemprop="dateCreated datePublished" datetime="2019-10-22T10:38:13+08:00">2019-10-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-29 11:01:45" itemprop="dateModified" datetime="2019-10-29T11:01:45+08:00">2019-10-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法分析C/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法分析C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/22/数据结构与算法-第四章/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/22/数据结构与算法-第四章/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">14k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">13 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="4-1-线性表"><a href="#4-1-线性表" class="headerlink" title="4.1 线性表"></a>4.1 线性表</h1><ul>
+<li><p>线性表：由称为元素的数据项组成的一种有限且有序的序列。</p>
+<ul>
+<li>有序不是指按大小排序，而是每个数据项都有自己的位置</li>
+<li>概念上不反对线性表有不同的数据类型的元素，但是一般来说只有一种</li>
+</ul>
+</li>
+<li><p>不包含任何元素称为空表（empty list），元素数目称为长度（length），开始节点称为表头（head），结尾节点称为表尾（tail）</p>
+</li>
+<li><p>元素位置可以与大小有关也可以无关。有序线性表（sorted list）元素按照值的递增顺序排列，无序线性表（unsorted list）元素值和位置没有关系</p>
+</li>
+<li><p>C++中下标从0开始</p></li></ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/10/22/数据结构与算法-第四章/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/10/21/计算机组成与体系结构-第一章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/21/计算机组成与体系结构-第一章/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">计算机组成与体系结构-第一章</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-21 17:16:23 / 修改时间：20:38:34" itemprop="dateCreated datePublished" datetime="2019-10-21T17:16:23+08:00">2019-10-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机组成与体系结构/" itemprop="url" rel="index"><span itemprop="name">计算机组成与体系结构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/21/计算机组成与体系结构-第一章/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/21/计算机组成与体系结构-第一章/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">505</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-1-计算机组成与体系结构"><a href="#1-1-计算机组成与体系结构" class="headerlink" title="1.1 计算机组成与体系结构"></a>1.1 计算机组成与体系结构</h1><ul>
+<li>计算机体系结构：对程序员可见的系统属性，直接影响到程序的逻辑执行（指令集、用来表示各种数据类型的比特数、输入输出机制以及内存寻址技术）</li>
+<li>计算机组成：实现结构规范的操作单元及其相互连接（硬件细节比如控制信号、计算机和外设的接口以及存储器使用的技术）</li>
+</ul>
+<h1 id="1-2-结构和功能"><a href="#1-2-结构和功能" class="headerlink" title="1.2 结构和功能"></a>1.2 结构和功能</h1><ul>
+<li>结构：部件相互关联的方法</li>
+<li>功能：作为构件组成部分的单个独立部件的操作</li>
+</ul>
+<h2 id="1-2-1-功能"><a href="#1-2-1-功能" class="headerlink" title="1.2.1 功能"></a>1.2.1 功能</h2><ul>
+<li>基本功能：数据处理、数据存储、数据传送、控制<ul>
+<li>输入输出（I/O）：数据直接从与计算机相连的设备中发送或者接收，设备称为<code>外围设备</code></li>
+<li>数据通信：数据传送至更远或者从远方设备接收</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/10/21/计算机组成与体系结构-第一章/operations.png" alt=""></p>
+<h2 id="1-2-2-结构"><a href="#1-2-2-结构" class="headerlink" title="1.2.2 结构"></a>1.2.2 结构</h2><ul>
+<li>主要构件：<ul>
+<li>中央处理单元（CPU）：控制计算机的操作并且执行数据处理功能<ul>
+<li>控制单元：控制整个CPU<ul>
+<li>顺序逻辑、控制器、寄存器、译码器、控制存储器</li>
+</ul>
+</li>
+<li>算术逻辑单元（ALU）：执行计算机的数据处理功能</li>
+<li>寄存器：提供CPU的内部存储</li>
+<li>CPU内部互连：提供控制器、ALU和寄存器之间的某种通信机制</li>
+</ul>
+</li>
+<li>主存储器：存储数据</li>
+<li>I/O：在计算机及其外部环境之间传输数据</li>
+<li>系统互连：为CPU、主存储器和I/O之间提供一些通信机制</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/10/21/数据结构与算法-第三章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/21/数据结构与算法-第三章/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">数据结构与算法-第三章</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-21 15:51:04 / 修改时间：17:15:15" itemprop="dateCreated datePublished" datetime="2019-10-21T15:51:04+08:00">2019-10-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法分析C/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法分析C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/21/数据结构与算法-第三章/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/21/数据结构与算法-第三章/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1 概述"></a>3.1 概述</h1><p>判断算法性能的一个基本考虑是处理一定<code>规模</code>的输入时该算法所需要执行的<code>基本操作</code>数。</p>
+<p>记输入规模为<code>n</code>，执行算法所需要的时间记为<code>T(n)</code>，设每一个单位操作的时间为<code>c</code>，则总时间为<code>T(n)=cn</code></p>
+<h1 id="3-2-最佳、最差、平均情况"><a href="#3-2-最佳、最差、平均情况" class="headerlink" title="3.2 最佳、最差、平均情况"></a>3.2 最佳、最差、平均情况</h1><p>对于同一个算法，同样的输入规模，输入的数据不同，运行时间可能差距很大，因此存在最佳、最差、平均情况，</p>
+<h1 id="3-3-当然是改进算法"><a href="#3-3-当然是改进算法" class="headerlink" title="3.3 当然是改进算法"></a>3.3 当然是改进算法</h1><h1 id="3-4-渐进分析"><a href="#3-4-渐进分析" class="headerlink" title="3.4 渐进分析"></a>3.4 渐进分析</h1><h2 id="3-4-1-上限"><a href="#3-4-1-上限" class="headerlink" title="3.4.1 上限"></a>3.4.1 上限</h2><ul>
+<li>用<code>大O表示法</code>，如果一个算法的增长率上限（在最差情况下）是<code>f(n)</code>，那么说这种算法最差情况下在集合<code>O(f(n))</code>中。<ul>
+<li>对于算法上限的论断应该与输入规模<code>n</code>有关，几乎总是考虑最佳、最差、平均情况下的上限，因此应该说“这种算法平均情况下增长率上限为<code>n^2</code>”</li>
+<li>使用此表示法没有严格的等号</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-4-2-下限"><a href="#3-4-2-下限" class="headerlink" title="3.4.2 下限"></a>3.4.2 下限</h2><ul>
+<li>当某一类数据的输入规模为n时（通常为最差情况，所有可能输入情况的平均，或最佳情况输入），一种算法消耗某种资源（通常是时间）的最大值<ul>
+<li>使用Ω（Omega）符号来表示</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-4-3-Θ表示法"><a href="#3-4-3-Θ表示法" class="headerlink" title="3.4.3 Θ表示法"></a>3.4.3 Θ表示法</h2><p>当上下限相等时，可以用<code>Θ（Theta）</code>表示法</p>
+<h2 id="3-4-4-化简法则"><a href="#3-4-4-化简法则" class="headerlink" title="3.4.4 化简法则"></a>3.4.4 化简法则</h2><p><img src="/2019/10/21/数据结构与算法-第三章/simplify-method.png" alt=""></p>
+<h2 id="3-4-5-函数分类"><a href="#3-4-5-函数分类" class="headerlink" title="3.4.5 函数分类"></a>3.4.5 函数分类</h2><p>比较两个函数的增长率最好的方法就是判断两个函数比值的极限</p>
+<h1 id="3-5-程序运行时间计算"><a href="#3-5-程序运行时间计算" class="headerlink" title="3.5 程序运行时间计算"></a>3.5 程序运行时间计算</h1><p><img src="/2019/10/21/数据结构与算法-第三章/calculate-time.png" alt=""></p>
+<ul>
+<li>对于顺序检索和二分法检索，孤立地看，二分法比顺序检索的效率高很多，但是这种看法没有把用于二分法检索的常数因子大于顺序检索的因素考虑在内，而在二分法检索中转到下一个搜索位置的计算代价大于顺序检索中只在当前位置增1的代价</li>
+</ul>
+<h1 id="3-6-问题的分析"><a href="#3-6-问题的分析" class="headerlink" title="3.6 问题的分析"></a>3.6 问题的分析</h1><p>任何排序算法的最差情况代价都在Ω(nlogn)中</p>
+<h1 id="3-7-容易混淆的概念"><a href="#3-7-容易混淆的概念" class="headerlink" title="3.7 容易混淆的概念"></a>3.7 容易混淆的概念</h1><ul>
+<li>对于大多数算法，如果知道一个完整的代价函数，其上限和下限往往是相同的，只有在不完全清楚待处理任务时，区别上下限才有意义。</li>
+<li>最佳、最差或者平均情况给出了明确的实例，可以应用在问题中，得到代价的衡量值。上限和下限则描述了这种代价的增长率。所以定义一个算法或者问题的增长率时，需要确定衡量指标（最佳、最差、平均情况），以及对代价增长率的描述（O，Ω，Θ）</li>
+<li>一个算法的上限与给定输入规模为n时的最差情况是不一样的。上限不是用来确定真正的代价的（对于给定的n值，即可确定的具体的运行时间），而是用来确定代价的增长率。</li>
+<li>对于每种输入规模都存在最佳和最差的情况。即对给定的一个规模（i）的所有输入来说，规模为i的一个或者多个输入总是最佳情况，而另外一个或者多个输入则是最差情况。通常（但不总是）对于一个任意规模，能给出最佳输入情况，也能给出最差输入情况。在理想情况下，当输入规模增大时，能够确定在最佳、最差和平均情况下的增长率。</li>
+</ul>
+<h1 id="3-8-多参数问题"><a href="#3-8-多参数问题" class="headerlink" title="3.8 多参数问题"></a>3.8 多参数问题</h1><h1 id="3-9-空间代价"><a href="#3-9-空间代价" class="headerlink" title="3.9 空间代价"></a>3.9 空间代价</h1><p>算法设计有一个重要原则：空间/时间权衡原则</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/10/21/数据结构与算法-第二章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/21/数据结构与算法-第二章/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">数据结构与算法-第二章</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-21 15:50:57 / 修改时间：15:51:37" itemprop="dateCreated datePublished" datetime="2019-10-21T15:50:57+08:00">2019-10-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法分析C/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法分析C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/21/数据结构与算法-第二章/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/21/数据结构与算法-第二章/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">10</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第二章是一些数学基础"><a href="#第二章是一些数学基础" class="headerlink" title="第二章是一些数学基础"></a>第二章是一些数学基础</h1>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/10/21/数据结构与算法-第一章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/21/数据结构与算法-第一章/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">数据结构与算法-第一章</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-21 14:55:04 / 修改时间：15:51:58" itemprop="dateCreated datePublished" datetime="2019-10-21T14:55:04+08:00">2019-10-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法分析C/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法分析C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/21/数据结构与算法-第一章/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/21/数据结构与算法-第一章/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">848</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-1-数据结构的原则"><a href="#1-1-数据结构的原则" class="headerlink" title="1.1 数据结构的原则"></a>1.1 数据结构的原则</h1><h1 id="1-2-抽象数据类型和数据结构"><a href="#1-2-抽象数据类型和数据结构" class="headerlink" title="1.2 抽象数据类型和数据结构"></a>1.2 抽象数据类型和数据结构</h1><ul>
+<li>类型：一组值的集合，比如布尔类型和整数类型。多个类型组成的记录可以是<code>聚合类型</code>或者<code>组合类型</code>。</li>
+<li>数据类型：一个类型和定义在这个类型上的一组操作，比如整数类型和加法。</li>
+<li>抽象数据类型(ADT)：数据结构作为一个软件构件的实现。<ul>
+<li>ADT的接口利用一个类型和这个类型上的一组操作来定义。</li>
+<li>ADT不指定数据类型如何实现，通过封装阻止外部对它的访问。</li>
+</ul>
+</li>
+<li>数据结构：是ADT的实现。<ul>
+<li>在如C++的面向对象的语言中，ADT和它的实现共同组成了“类”，同ADT联系在一起的每一个操作均由一个成员函数或者方法实现。</li>
+<li>定义数据所需要的存储空间的变量称为“数据成员”。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/10/21/数据结构与算法-第一章/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/03/08/第六章：手势检测/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/08/第六章：手势检测/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">第六章：手势检测</a>
               
             
           </h2>
@@ -614,7 +2139,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/03/01/第五章：页面布局/">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/03/01/第五章：页面布局/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZaneCode6574">
@@ -634,7 +2159,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/01/第五章：页面布局/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第五章：页面布局</a>
+                <a href="/2019/03/01/第五章：页面布局/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">第五章：页面布局</a>
               
             
           </h2>
@@ -837,7 +2362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/27/第四章：Cupertino风格组件/">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/02/27/第四章：Cupertino风格组件/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZaneCode6574">
@@ -857,7 +2382,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/27/第四章：Cupertino风格组件/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第四章：Cupertino风格组件</a>
+                <a href="/2019/02/27/第四章：Cupertino风格组件/" class="post-title-link" itemprop="https://zanecode6574.github.io/index.html">第四章：Cupertino风格组件</a>
               
             
           </h2>
@@ -1033,1509 +2558,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/24/第三章：Material-Design风格组件/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZaneCode6574">
-      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZaneCode6574的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/24/第三章：Material-Design风格组件/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第三章：Material Design风格组件</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-24 20:17:47" itemprop="dateCreated datePublished" datetime="2019-02-24T20:17:47+08:00">2019-02-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-25 15:56:26" itemprop="dateModified" datetime="2019-02-25T15:56:26+08:00">2019-02-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/24/第三章：Material-Design风格组件/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/24/第三章：Material-Design风格组件/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">26k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">23 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Material Design是由Google推出的全新设计语言，这种设计语言旨在为手机、平板电脑、台式机和其他平台提供更一致、更广泛的外观和感觉。在本书里我们有时把Material Design也称为纸墨设计，Material Design风格是一种非常有质感的设计风格，并会提供一些默认的交互动画。</p>
-<p><img src="/2019/02/24/第三章：Material-Design风格组件/Material1.JPG" alt=""><br><img src="/2019/02/24/第三章：Material-Design风格组件/Material2.JPG" alt=""></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/24/第三章：Material-Design风格组件/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/23/第二章：Flutter常用组件/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZaneCode6574">
-      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZaneCode6574的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/23/第二章：Flutter常用组件/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第二章：Flutter常用组件</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-23 14:29:24" itemprop="dateCreated datePublished" datetime="2019-02-23T14:29:24+08:00">2019-02-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-24 18:09:14" itemprop="dateModified" datetime="2019-02-24T18:09:14+08:00">2019-02-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/23/第二章：Flutter常用组件/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/23/第二章：Flutter常用组件/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">14k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">12 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>（这前面的章节安排有些问题，比如Scaffold组件就没讲，而是在后面才出现的，这里先用，后面再看就明白了）</p>
-<p>Flutter里有一个非常重要的核心理念：一切皆为组件，Flutter所有的元素皆由组件组成。比如：一个布局元素、一个动画、一个装饰效果等。</p>
-<h1 id="容器组件"><a href="#容器组件" class="headerlink" title="容器组件"></a>容器组件</h1><p>容器组件（Container）包含一个子Widget，自身具备如alignment、padding等基础属性，方便布局过程中摆放child</p>
-<p><img src="/2019/02/23/第二章：Flutter常用组件/Container.JPG" alt=""></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/23/第二章：Flutter常用组件/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/23/第一章：Flutter基础知识/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZaneCode6574">
-      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZaneCode6574的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/23/第一章：Flutter基础知识/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第一章：Flutter基础知识</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-23 13:21:37 / 修改时间：14:27:27" itemprop="dateCreated datePublished" datetime="2019-02-23T13:21:37+08:00">2019-02-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/23/第一章：Flutter基础知识/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/23/第一章：Flutter基础知识/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">11k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">10 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="Flutter特点"><a href="#Flutter特点" class="headerlink" title="Flutter特点"></a>Flutter特点</h2><ul>
-<li>跨平台：现在Flutter至少可以跨5种平台，甚至支持嵌入式开发。我们常用的有MacOS、Windows、Linux、Android、iOS，甚至可以在谷歌最新的操作系统Fuchsia上运行。到目前为止，Flutter算是支持平台最多的框架了，良好的跨平台性，直接带来的好处就是减少开发成本。</li>
-<li>丝滑般的体验：使用Flutter内置高大上的Material Design和Cupertino风格组件、丰富的motion API、平滑而自然的滑动效果和平台感知，为用户带来全新体验。</li>
-<li>响应式框架：使用Flutter的、响应式框架和一系列基础组件，可以轻松构建用户界面。使用功能强大且灵活的API（针对2D、动画、手势、效果等）能解决艰难的UI挑战。</li>
-<li>支持插件：通过Flutter的插件可以访问平台本地API，如相机、蓝牙、WiFi等。借助现有的Java、Swift、Objective C、C++代码实现对原生系统的调用。</li>
-<li>60fps超高性能：Flutter采用GPU渲染技术，所以性能极高。Flutter编写的应用是可以达到60fps（每秒传输帧数），这也就是说，它完全可以胜任游戏的制作。官方宣称用Flutter开发的应用甚至会超过原生应用的性能。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/23/第一章：Flutter基础知识/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/21/第十三章：进阶技巧/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZaneCode6574">
-      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZaneCode6574的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/21/第十三章：进阶技巧/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第十三章：进阶技巧</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-21 20:44:19" itemprop="dateCreated datePublished" datetime="2019-02-21T20:44:19+08:00">2019-02-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-22 01:16:38" itemprop="dateModified" datetime="2019-02-22T01:16:38+08:00">2019-02-22</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/第一行代码Android/" itemprop="url" rel="index"><span itemprop="name">第一行代码Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/21/第十三章：进阶技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/21/第十三章：进阶技巧/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">15k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">13 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="全局获取Context"><a href="#全局获取Context" class="headerlink" title="全局获取Context"></a>全局获取Context</h1><p>很多地方都需要用到Context，弹出Toast的时候需要，启动活动的时候需要，发送广播的时候需要，操作数据库的时候需要，使用通知的时候需要，等等等等。</p>
-<p>目前很多操作都是在活动中进行的，因此很少遇到获取Context的困难，因为活动本身就是一个Context，但是应用框架逐渐复杂起来的时候，很多逻辑代码都会脱离Activity类。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/21/第十三章：进阶技巧/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/21/额外篇：Git相关/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZaneCode6574">
-      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZaneCode6574的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/21/额外篇：Git相关/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">额外篇：Git相关</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-21 14:09:41 / 修改时间：20:33:33" itemprop="dateCreated datePublished" datetime="2019-02-21T14:09:41+08:00">2019-02-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/第一行代码Android/" itemprop="url" rel="index"><span itemprop="name">第一行代码Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/21/额外篇：Git相关/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/21/额外篇：Git相关/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">4.5k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">4 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Git简介"><a href="#Git简介" class="headerlink" title="Git简介"></a>Git简介</h1><p>Git是一个开源的分布式版本控制工具，它的开发者是Linux操作系统的作者Linus Torvalds。Git被开发出来的初衷是为了更好地管理Linux内核，而现在却早已被广泛应用于全球各种大中小型的项目中。</p>
-<h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>安装Git的方法有很多，我个人使用的Mac，可以直接使用brew进行安装。</p>
-<p>如果是Windows就去<a href="https://git-for-windows.github.io" target="_blank" rel="noopener">https://git-for-windows.github.io</a>下载安装包进行安装</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/21/额外篇：Git相关/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/02/21/使用Servlet建立小型应用服务器/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZaneCode6574">
-      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZaneCode6574的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/21/使用Servlet建立小型应用服务器/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">使用Servlet建立小型应用服务器</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-21 00:09:21 / 修改时间：16:13:24" itemprop="dateCreated datePublished" datetime="2019-02-21T00:09:21+08:00">2019-02-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/第一行代码Android/" itemprop="url" rel="index"><span itemprop="name">第一行代码Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/21/使用Servlet建立小型应用服务器/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/21/使用Servlet建立小型应用服务器/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">9.5k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">9 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前段时间写App遇到了需要服务器的情况，这里使用的是Servlet，需要用到的工具和软件：</p>
-<ol>
-<li>Tomcat-9.0.16</li>
-<li>JDK-8u202,这里我的网盘提供三个版本的，分别是Linux-x64、Windows-x64、MacOSx-x64</li>
-<li>JSON、Servlet、Mysql需要的jar包</li>
-</ol>
-<p>下载地址：<a href="http://onedrive.zanecode6574.com/Servlet%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank" rel="noopener">Servlet服务器所需文件</a></p>
-<p>把文件下载下来，其中jdk环境变量配置好，Tomcat放到自己想放的位置，如果是Mac可以直接用brew安装tomcat</p>
-<p>（我这里提供的是我用的版本，mysql版本和jdk自己可以换，和本机不一致可能会出错）</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/21/使用Servlet建立小型应用服务器/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.234432.xyz/2019/01/27/第十二章：MaterialDesign实战/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZaneCode6574">
-      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZaneCode6574的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/27/第十二章：MaterialDesign实战/" class="post-title-link" itemprop="https://blog.234432.xyz/index.html">第十二章：MaterialDesign实战</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-27 15:57:23" itemprop="dateCreated datePublished" datetime="2019-01-27T15:57:23+08:00">2019-01-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-29 13:48:08" itemprop="dateModified" datetime="2019-01-29T13:48:08+08:00">2019-01-29</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/第一行代码Android/" itemprop="url" rel="index"><span itemprop="name">第一行代码Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/01/27/第十二章：MaterialDesign实战/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/27/第十二章：MaterialDesign实战/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">74k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1:08</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>长久以来，大多数人都认为Android系统的UI并不算美观，至少没有iOS系统的美观。以至于很多IT公司在进行应用界面设计的时候，为了保证双平台的统一性，强制要求Android端的界面风格必须和iOS端一致。这种情况在现实工作当中实在是太常见了，虽然我认为这是非常不合理的。因为对于一般用户来说，他们不太可能会在两个操作系统上分别去使用同一个应用，但是却必定会在同一个操作系统上使用不同的应用。因此，同一个操作系统中各个应用之间的界面统一性要远比一个应用在双平台的界面统一性重要得多，只有这样，才能给使用者带来更好的用户体验。</p>
-<p>但问题在于，Android标准的界面设计风格并不是特别被大众所接受，很多公司都觉得自己完全可以设计出更加好看的界面，从而导致Android平台的界面风格长期难以得到统一。为了解决这个问题，谷歌也是祭出了杀手锏，在2014年Google I/O大会上重磅推出了一套全新的界面设计语言——Material Design。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/27/第十二章：MaterialDesign实战/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2578,7 +2605,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2599,7 +2626,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2708,7 +2741,25 @@
                     
                       
                     
-                    <span class="site-state-item-count">44</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2814,7 +2865,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">579k</span>
+    <span title="站点总字数">598k</span>
   
 
   
@@ -2823,12 +2874,12 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">8:46</span>
+    <span title="站点阅读时长">9:04</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -3423,5 +3474,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
 </html>
