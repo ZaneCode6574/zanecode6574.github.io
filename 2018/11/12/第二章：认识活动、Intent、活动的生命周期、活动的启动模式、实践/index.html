@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "cc8014cb"
+    });
+  daovoice('update');
+  </script>
+
+
+  <meta name="description" content="没有特别说明用的都是Android Studio 手动创建一个活动 创建一个项目，选择不创建任何活动 创建一个活动FirstActivity，不勾选Generate Layout和Launcher Activity这两个选项（Launcher表示设置为当前项目的主活动） 手动创建一个布局文件：在app/src/main/res创建一个layout目录，然后在目录内创建一个Layout resour">
+<meta name="keywords" content="活动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践">
+<meta property="og:url" content="https://zanecode6574.github.io/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/index.html">
+<meta property="og:site_name" content="ZaneCode6574的博客">
+<meta property="og:description" content="没有特别说明用的都是Android Studio 手动创建一个活动 创建一个项目，选择不创建任何活动 创建一个活动FirstActivity，不勾选Generate Layout和Launcher Activity这两个选项（Launcher表示设置为当前项目的主活动） 手动创建一个布局文件：在app/src/main/res创建一个layout目录，然后在目录内创建一个Layout resour">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zanecode6574.github.io/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/安卓生命周期示意图.jpeg">
+<meta property="og:updated_time" content="2018-11-12T15:07:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践">
+<meta name="twitter:description" content="没有特别说明用的都是Android Studio 手动创建一个活动 创建一个项目，选择不创建任何活动 创建一个活动FirstActivity，不勾选Generate Layout和Launcher Activity这两个选项（Launcher表示设置为当前项目的主活动） 手动创建一个布局文件：在app/src/main/res创建一个layout目录，然后在目录内创建一个Layout resour">
+<meta name="twitter:image" content="https://zanecode6574.github.io/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/安卓生命周期示意图.jpeg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZaneCode6574的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zanecode6574.github.io/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践 | ZaneCode6574的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZaneCode6574的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">时光机</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-12 11:03:51 / 修改时间：23:07:20" itemprop="dateCreated datePublished" datetime="2018-11-12T11:03:51+08:00">2018-11-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/第一行代码Android/" itemprop="url" rel="index"><span itemprop="name">第一行代码Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">22k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">20 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>没有特别说明用的都是Android Studio</strong></p>
+<h1 id="手动创建一个活动"><a href="#手动创建一个活动" class="headerlink" title="手动创建一个活动"></a>手动创建一个活动</h1><ol>
+<li>创建一个项目，选择不创建任何活动</li>
+<li>创建一个活动FirstActivity，不勾选Generate Layout和Launcher Activity这两个选项（Launcher表示设置为当前项目的主活动）</li>
+<li>手动创建一个布局文件：在app/src/main/res创建一个layout目录，然后在目录内创建一个Layout resource file，命名为first_layout</li>
+<li>可以编辑此布局文件<a id="more"></a></li>
+<li>加载布局：回到创建的活动，在onCreate()方法中加入代码<br><code>setContentView(R.layout.first_layout)</code><br>这里调用了setContentView方法给当前活动加载了一个布局</li>
+<li>在AndroidManifest文件中注册（所有活动都需要在此文件中注册才能生效），实际上使用Android Studio的时候会自动注册上，代码<br><code>&lt;activity android:name=&quot;.FirstActivity&gt;&lt;/activity&gt;</code><br>在此文件中，最外层通过<br><code>package=&quot;com.example.activitytest&quot;</code><br>指定了包名，因此.FirstActivity实际上是com.example.activitytest.FirstActivity的缩写</li>
+<li>但是这样仅仅是注册了这个活动，没有指定程序的主活动，因此在<code>&lt;activity&gt;</code>标签中加入<code>&lt;intent-filter&gt;</code>标签，在此标签内添加<br><code>&lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;</code><br>和<br><code>&lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;</code>  </li>
+</ol>
+<p>还可以在<code>&lt;activity&gt;</code>标签中添加android:label=”xxxx”来指定标题栏，会显示在活动最顶部  </p>
+<h1 id="使用Toast"><a href="#使用Toast" class="headerlink" title="使用Toast"></a>使用Toast</h1><p>例：点击按钮以后弹出通知<br>在布局文件中添加了按钮button_1,然后在活动的函数如下<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">protected void onCreate( <span class="keyword">Bundle </span>savedInstanceState) &#123; </span><br><span class="line">	super. onCreate( savedInstanceState)<span class="comment">; </span></span><br><span class="line">	setContentView( R. layout. first_ layout)<span class="comment">; </span></span><br><span class="line">	<span class="keyword">Button </span><span class="keyword">button1 </span>= (<span class="keyword">Button) </span>findViewById( R. id. <span class="keyword">button_ </span><span class="number">1</span>)<span class="comment">;</span></span><br><span class="line">	<span class="keyword">button1. </span>setOnClickListener( new View. OnClickListener() &#123; </span><br><span class="line">		@Override public void onClick( View v) &#123; </span><br><span class="line">		Toast. makeText( FirstActivity. this, <span class="string">"You clicked Button 1"</span>, Toast. LENGTH_ <span class="keyword">SHORT). </span><span class="keyword">show();</span></span><br><span class="line"><span class="keyword">	</span>	&#125; </span><br><span class="line">	&#125;)<span class="comment">; </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>makeText需要传入三个参数，第一个是Context即上下文，活动本身就是一个Context对象因此直接传入FirstActivity.this即可，第二个参数是想显示的内容，第三个参数是内置常量控制显示时长</strong>  </p>
+<h1 id="在活动中加载Menu"><a href="#在活动中加载Menu" class="headerlink" title="在活动中加载Menu"></a>在活动中加载Menu</h1><ol>
+<li>在res文件夹中新建文件夹menu，然后创建一个新的Menu resource文件，这里命名为main</li>
+<li><p>在main.xml中添加代码</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//这里创建了两个菜单项，&lt;<span class="keyword">item&gt;标签就是用来创建具体的菜单项的</span></span><br><span class="line"><span class="keyword">&lt; </span>menu xmlns: <span class="keyword">android </span>=<span class="string">" http:// schemas. android. com/ apk/ res/ android"</span> &gt; </span><br><span class="line">	&lt; <span class="keyword">item </span><span class="keyword">android: </span>id =<span class="string">"@ + id/ add_ item"</span> <span class="keyword">android: </span>title =<span class="string">" Add"</span>/ &gt; </span><br><span class="line">	&lt; <span class="keyword">item </span><span class="keyword">android: </span>id =<span class="string">"@ + id/ remove_ item"</span> <span class="keyword">android: </span>title =<span class="string">" Remove"</span>/ &gt; </span><br><span class="line">&lt;/ menu &gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回到FirstActivity中添加代码，使用快捷键重写onCreateOptionsMenu()方法，Mac快捷键是control+o，Win是ctrl+o</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">( Menu menu)</span> </span>&#123; </span><br><span class="line">	getMenuInflater(). inflate( R. menu. main, menu); </span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>getMenuInflater函数获得MenuInflater对象，然后调用inflate函数给当前活动创建菜单，inflate函数接收两个参数，第一个用于指定使用哪一个资源文件创建菜单，第二个参数用于指定我们的菜单项添加到哪一个Menu对象中，这里直接用的menu，最后return true表示让此菜单显示出来</p>
+<h2 id="给菜单添加响应事件"><a href="#给菜单添加响应事件" class="headerlink" title="给菜单添加响应事件"></a>给菜单添加响应事件</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> onOptionsItemSelected( MenuItem item) &#123; </span><br><span class="line">	<span class="keyword">switch</span> (item. getItemId()) &#123; </span><br><span class="line">		<span class="keyword">case</span> R. id. add_ item: </span><br><span class="line">			Toast. makeText( <span class="keyword">this</span>, <span class="string">"You clicked Add"</span>, Toast. LENGTH_ <span class="keyword">SHORT</span>). show(); </span><br><span class="line">			<span class="keyword">break</span>; </span><br><span class="line">		<span class="keyword">case</span> R. id. remove_ item: </span><br><span class="line">		Toast. makeText( <span class="keyword">this</span>, <span class="string">"You clicked Remove"</span>, Toast. LENGTH_ <span class="keyword">SHORT</span>). show(); </span><br><span class="line">			<span class="keyword">break</span>; </span><br><span class="line">		<span class="keyword">default</span>: </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就添加了菜单的响应函数，点击相应的按钮会显示相应的功能</p>
+<h1 id="销毁一个活动"><a href="#销毁一个活动" class="headerlink" title="销毁一个活动"></a>销毁一个活动</h1><ol>
+<li>按钮添加一个监听函数直接finish()，与按下back键的效果是一样的</li>
+</ol>
+<h1 id="Intent的使用（在活动之间传递数据）"><a href="#Intent的使用（在活动之间传递数据）" class="headerlink" title="Intent的使用（在活动之间传递数据）"></a>Intent的使用（在活动之间传递数据）</h1><h2 id="显示Intent"><a href="#显示Intent" class="headerlink" title="显示Intent"></a>显示Intent</h2><ol>
+<li>在之前的基础上创建一个activity，这里命名为SecondActivity，勾选generate layout file，这里布局文件就叫second_layout，不要勾选launcher选项</li>
+<li>编辑此活动的布局文件，添加一个按钮  </li>
+<li>修改FirstActivity中的按钮点击时间，改为如下代码  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">button1. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">		Intent intent = <span class="keyword">new</span> Intent( FirstActivity. <span class="keyword">this</span>, SecondActivity. <span class="class"><span class="keyword">class</span>)</span>; </span><br><span class="line">		startActivity( intent); </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这里首先是构造出一个intent，然后传入FirstActivity.this作为上下文，传入SecondActivity.class作为目标活动，然后直接调用StartActivity并传入构建的intent即可启动  </p>
+<h2 id="隐式Intent"><a href="#隐式Intent" class="headerlink" title="隐式Intent"></a>隐式Intent</h2><p>隐式Intent不指明我想启动哪一个活动，而是制定了比较抽象的action和category，交给系统去分析启动合适的活动来处理</p>
+<ol>
+<li>在SecondActivity的<code>&lt;activity&gt;</code>标签中配置<code>&lt;intent-filter&gt;</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt; <span class="attr">activity</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">". SecondActivity"</span> &gt;</span> </span><br><span class="line">	<span class="tag">&lt; <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">action</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" com. example. activitytest. ACTION_ START"</span> /&gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">category</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" android. intent. category. DEFAULT"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/ <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">activity</span> &gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这里指定此活动能够响应com.example.activitytest.ACTION_START这个action，<code>&lt;category&gt;</code>包含了一些附加信息，更精确指明了当前的活动能够响应的Intent中还可能带有的category，只有action和category中的内容同时匹配上，这个活动才会响应intent</p>
+<ol>
+<li>修改FirstActivity中的按钮响应函数<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">button1. setOnClickListener( <span class="keyword">new</span> View. OnClickListener()</span><br><span class="line">&#123; </span><br><span class="line">	<span class="meta">@Override</span> <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">		Intent intent = <span class="keyword">new</span> Intent(<span class="string">" com. example. activitytest. ACTION_ START"</span>); </span><br><span class="line">		startActivity( intent); </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这里使用了Intent的另外一个构造函数，不指定categoty就会使用默认的值<br><strong>每个Intent只能指定一个action，可以指定多个category</strong></p>
+<p>如果为intent添加一个category<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">button1. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">	<span class="meta">@Override</span> <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">		Intent intent = <span class="keyword">new</span> Intent(<span class="string">" com. example. activitytest. ACTION_ START"</span>); </span><br><span class="line">		intent. addCategory(<span class="string">" com. example. activitytest. MY_ CATEGORY"</span>); </span><br><span class="line">		startActivity( intent); </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>此时点击按钮程序会崩溃，因为没有任何活动可以响应指定的intent，然后在SecondActivity的<code>&lt;intent-filter&gt;</code>标签中添加<code>&lt;category&gt;</code>标签<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt; <span class="attr">activity</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">". SecondActivity"</span> &gt;</span> </span><br><span class="line">	<span class="tag">&lt; <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">action</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" com. example. activitytest. ACTION_ START"</span> /&gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">category</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" android. intent. category. DEFAULT"</span> /&gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">category</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" com. example. activitytest. MY_ CATEGORY"</span>/ &gt;</span> </span><br><span class="line">		<span class="tag">&lt;/ <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">activity</span> &gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>添加了指定的category即可避免崩溃</p>
+<h2 id="使用Intent在活动之间传递数据"><a href="#使用Intent在活动之间传递数据" class="headerlink" title="使用Intent在活动之间传递数据"></a>使用Intent在活动之间传递数据</h2><h3 id="传递数据给下一个活动"><a href="#传递数据给下一个活动" class="headerlink" title="传递数据给下一个活动"></a>传递数据给下一个活动</h3><p>Intent中提供了一系列putExtra()方法的重载，可以把我们想传递的数据添加到Intent中,比如FirstActivity中有一个字符串，把这个字符串传到SecondActivity中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">button1. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">		String data = <span class="string">"Hello SecondActivity"</span>; </span><br><span class="line">		Intent intent = <span class="keyword">new</span> Intent( FirstActivity. <span class="keyword">this</span>, SecondActivity. <span class="class"><span class="keyword">class</span>)</span>; </span><br><span class="line">		intent. putExtra(<span class="string">" extra_ data"</span>, data); </span><br><span class="line">		startActivity( intent); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>putExtra函数有两个参数，第一个是键，第二个是需要传过去的值，在SecondActivity中要有相应的代码来对应取出这串字符串<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123; </span><br><span class="line">	<span class="meta">@Override</span> <span class="keyword">protected</span> void onCreate( </span><br><span class="line">		<span class="type">Bundle</span> savedInstanceState) &#123; </span><br><span class="line">			<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">			setContentView( <span class="type">R</span>. layout. second_ layout); </span><br><span class="line">			<span class="type">Intent</span> intent = getIntent(); </span><br><span class="line">			<span class="type">String</span> data = intent. getStringExtra(<span class="string">" extra_ data"</span>); </span><br><span class="line">			<span class="type">Log</span>. d(<span class="string">" SecondActivity"</span>, data); &#125; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在SecondActivity中也要构建一个intent，然后通过getIntent()方法获取到用于启动SecondActivity的Intent，然后调用getStringExtra，传入键即可获得，如果是整型就调用getIntExtra，别的类型同理</p>
+<h3 id="返回数据给上一个活动"><a href="#返回数据给上一个活动" class="headerlink" title="返回数据给上一个活动"></a>返回数据给上一个活动</h3><p>Activity中还有一个启动活动的函数叫做startActivityForResult，这个方法期望在活动销毁的时候能够返回数据给上一个活动，接收两个参数，第一个是Intent，第二个是请求码，请求码用于在之后的回调中判断数据的来源  </p>
+<ul>
+<li><p>例：修改FirstActivity中的按钮点击事件</p>
+  <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">button1.setOnClickListener(<span class="keyword">new</span> View.OnClickListener()&#123;</span><br><span class="line">	<span class="meta">@override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>&#123;</span><br><span class="line">		Intent intent=<span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity.class);</span><br><span class="line">		startActivityForResult(intent,<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>  请求码只需要保证是唯一的值就行了，这里传入1。</p>
+<p>  给SecondActivity中的按钮添加点击事件</p>
+  <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Button </span><span class="keyword">button2=(Button)findViewById(R.id.button_2);</span></span><br><span class="line"><span class="keyword">button2.setOnClickListener(new </span>View.OnClickListener()&#123;</span><br><span class="line">	@override</span><br><span class="line">	public void onClick(View v)&#123;</span><br><span class="line">		Intent intent=new Intent()<span class="comment">;</span></span><br><span class="line">		intent.putExtra(<span class="string">"data_return"</span>,<span class="string">"Hello FirstActivity"</span>)<span class="comment">;</span></span><br><span class="line">		setResult(RESULT_OK,intent)<span class="comment">;</span></span><br><span class="line">		finish()<span class="comment">;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>  此处的Intent仅仅用来传递数据，setResult函数是专门用来向上一个活动传递数据的，第一个参数为处理结果，通常用RESULT_OK和RESULT_CALCELED，第二个参数把生成的Intent传回去  </p>
+<p>  由于我们是使用startActivityForResult()方法来启动SecondActivity的，在 SecondActivity被销毁之后会回调上一个活动的 onActivityResult()方法，因此我们需要在 FirstActivity中重写这个方法来得到返回的数据</p>
+  <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">( <span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123; </span><br><span class="line">	<span class="keyword">switch</span> (requestCode) &#123; </span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>: </span><br><span class="line">			<span class="keyword">if</span> (resultCode = = RESULT_ OK) &#123; </span><br><span class="line">				String returnedData = data. getStringExtra(<span class="string">" data_ return"</span>); </span><br><span class="line">				Log. d(<span class="string">" FirstActivity"</span>, returnedData); </span><br><span class="line">				&#125; </span><br><span class="line">			<span class="keyword">break</span>; </span><br><span class="line">		<span class="keyword">default</span>: </span><br><span class="line">		&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  onActivityResult有三个参数，第一个是requestCode，即我们启动活动的时候传入的请求码，第二个参数resultCode，即我们返回数据时传入的处理结果，第三个参数data即携带着返回数据的Intent  </p>
+<p>  由于在活动中可能调用startActivityForResult去启动很多不同的应用，每一个活动返回时都会回调onActivityResult这个函数，因此我们首先要检查requestCode来判断数据来源，然后通过resultCode来判断处理结果是否成功，最后从data中取出值并打印出来  </p>
+<p>  这是通过按钮返回上一个活动，如果想通过返回键返回以后并返回数据，则要重写SecondActivity的onBackPressed函数，例</p>
+  <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onBackPressed</span><span class="params">()</span> </span>&#123; </span><br><span class="line">	Intent intent = <span class="keyword">new</span> Intent(); </span><br><span class="line">	intent. putExtra(<span class="string">" data_ return"</span>, <span class="string">"Hello FirstActivity"</span>); </span><br><span class="line">	setResult( RESULT_ OK, intent); </span><br><span class="line">	finish(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="更多隐式Intent用法"><a href="#更多隐式Intent用法" class="headerlink" title="更多隐式Intent用法"></a>更多隐式Intent用法</h2><p>例，调用浏览器打开一个网页<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">button1. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() </span><br><span class="line">&#123; </span><br><span class="line">	<span class="meta">@Override</span> <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">		Intent intent = <span class="keyword">new</span> Intent( Intent. ACTION_ VIEW); </span><br><span class="line">		intent. setData( Uri. parse(<span class="string">" http:// www. baidu. com"</span>)); </span><br><span class="line">		startActivity( intent); </span><br><span class="line">		&#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>此处指定了一个intent，调用setData函数，Uri.parse函数是将一个网址解析成一个Uri对象，再调用setData函数将Uri对象传递进去</p>
+<ul>
+<li>setData函数接收一个 Uri对象，主要用于指定当前 Intent正在操作的数据，而这些数据通常都是以字符串的形式传入到 Uri. parse()方法中解析产生的  </li>
+<li>与此对应，我们可以在活动的<code>&lt;intent-filter&gt;</code>标签中配置一个<code>&lt;data&gt;</code>标签  <ul>
+<li>android: scheme用于指定数据的协议部分，如上例中的 http部分</li>
+<li>android: host用于指定数据的主机名部分，如上例中的 www. baidu. com部分</li>
+<li>android: port用于指定数据的端口部分，一般紧随在主机名之后</li>
+<li>android: path用于指定主机名和端口之后的部分，如一段网址中跟在域名之后的内容 </li>
+<li>android: mimeType用于指定可以处理的数据类型，允许使用通配符的方式进行指定  </li>
+</ul>
+</li>
+</ul>
+<p>只有<code>&lt;data&gt;</code>标签中的内容和Intent中的完全一致时，活动才会响应相应的Intent，一般不会指定过多的<code>&lt;data&gt;</code>  </p>
+<ul>
+<li><p>例如创建一个活动响应网页打开的Intent</p>
+<ul>
+<li><p>新建一个活动ThirdActivity，布局文件third_layout，代码如下</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt; LinearLayout xmlns: </span><br><span class="line">	<span class="attr">android</span> =<span class="string">" http:// schemas. android. com/ apk/ res/ android"</span> </span><br><span class="line">	android: <span class="attr">orientation</span> =<span class="string">" vertical"</span> android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">	android: layout_ <span class="attr">height</span> =<span class="string">" match_ parent"</span> &gt; &lt; Button android: <span class="attr">id</span> =<span class="string">"@ + id/ button_ 3"</span> </span><br><span class="line">	android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">	android: layout_ <span class="attr">height</span> =<span class="string">" wrap_ content"</span> </span><br><span class="line">	android: <span class="attr">text</span> =<span class="string">" Button 3"</span> /&gt; </span><br><span class="line">&lt;/ LinearLayout &gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改ThirdActivity在AndroidManifest中的注册信息</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt; <span class="attr">activity</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">". ThirdActivity"</span> &gt;</span> </span><br><span class="line">	<span class="tag">&lt; <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">action</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" android. intent. action. VIEW"</span> /&gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">category</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" android. intent. category. DEFAULT"</span> /&gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">data</span> <span class="attr">android:</span> <span class="attr">scheme</span> =<span class="string">" http"</span> /&gt;</span> <span class="tag">&lt;/ <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">activity</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>&lt;data&gt;</code>标签指定了响应http请求，这样点击一个网页的时候就会弹出这个活动的选项. </p>
+</li>
+</ul>
+</li>
+<li><p>例如调用打电话活动</p>
+  <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">button1. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">	<span class="meta">@Override</span> <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">		Intent intent = <span class="keyword">new</span> Intent( Intent. ACTION_ DIAL); </span><br><span class="line">		intent. setData( Uri. parse(<span class="string">" tel: 10086"</span>)); </span><br><span class="line">		startActivity( intent); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>  这里指定的action是ACTION_DIAL  </p>
+</li>
+</ul>
+<h1 id="活动的生命周期"><a href="#活动的生命周期" class="headerlink" title="活动的生命周期"></a>活动的生命周期</h1><h2 id="返回栈"><a href="#返回栈" class="headerlink" title="返回栈"></a>返回栈</h2><p>Android中的活动是可以层叠的。我们每启动一个新的活动，就会覆盖在原活动之上，然后点击 Back键会销毁最上面的活动，下面的一个活动就会重新显示出来。其实 Android是使用任务（ Task）来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个栈也被称作返回栈（ Back Stack）  </p>
+<h2 id="活动状态"><a href="#活动状态" class="headerlink" title="活动状态"></a>活动状态</h2><ul>
+<li>运行状态：当一个活动位于返回栈的栈顶时，这时活动就处于运行状态。系统最不愿意回收的就是处于运行状态的活动，因为这会带来非常差的用户体验。  </li>
+<li>暂停状态：当一个活动不再处于栈顶位置，但仍然可见时，这时活动就进入了暂停状态。你可能会觉得既然活动已经不在栈顶了，还怎么会可见呢？这是因为并不是每一个活动都会占满整个屏幕的，比如对话框形式的活动只会占用屏幕中间的部分区域。处于暂停状态的活动仍然是完全存活着的，系统也不愿意去回收这种活动（因为它还是可见的，回收可见的东西都会在用户体验方面有不好的影响），只有在内存极低的情况下，系统才会去考虑回收这种活动。</li>
+<li>停止状态：当一个活动不再处于栈顶位置，并且完全不可见的时候，就进入了停止状态。系统仍然会为这种活动保存相应的状态和成员变量，但是这并不是完全可靠的，当其他地方需要内存时，处于停止状态的活动有可能会被系统回收。</li>
+<li>销毁状态：当一个活动从返回栈中移除后就变成了销毁状态。系统会最倾向于回收处于这种状态的活动，从而保证手机的内存充足。</li>
+</ul>
+<h2 id="活动的生存期"><a href="#活动的生存期" class="headerlink" title="活动的生存期"></a>活动的生存期</h2><p>Activity类中定义了 7个回调方法  </p>
+<ul>
+<li>onCreate()：这个方法你已经看到过很多次了，每个活动中我们都重写了这个方法，它会在活动第一次被创建的时候调用。你应该在这个方法中完成活动的初始化操作，比如说加载布局、绑定事件等。 </li>
+<li>onStart()。这个方法在活动由不可见变为可见的时候调用。 </li>
+<li>onResume()。这个方法在活动准备好和用户进行交互的时候调用。此时的活动一定位于返回栈的栈顶，并且处于运行状态。 </li>
+<li>onPause()。这个方法在系统准备去启动或者恢复另一个活动的时候调用。我们通常会在这个方法中将一些消耗 CPU的资源释放掉，以及保存一些关键数据，但这个方法的执行速度一定要快，不然会影响到新的栈顶活动的使用。 </li>
+<li>onStop()。这个方法在活动完全不可见的时候调用。它和 onPause()方法的主要区别在于，如果启动的新活动是一个对话框式的活动，那么 onPause()方法会得到执行，而 onStop()方法并不会执行。 </li>
+<li>onDestroy()。这个方法在活动被销毁之前调用，之后活动的状态将变为销毁状态。 </li>
+<li>onRestart()。这个方法在活动由停止状态变为运行状态之前调用，也就是活动被重新启动了。  </li>
+</ul>
+<p>以上 7个方法中除了 onRestart()方法，其他都是两两相对的，从而又可以将活动分为3种生存期  </p>
+<ul>
+<li>完整生存期。活动在 onCreate()方法和 onDestroy()方法之间所经历的，就是完整生存期。一般情况下，一个活动会在 onCreate()方法中完成各种初始化操作，而在 onDestroy()方法中完成释放内存的操作。</li>
+<li>可见生存期。活动在 onStart()方法和 onStop()方法之间所经历的，就是可见生存期。在可见生存期内，活动对于用户总是可见的，即便有可能无法和用户进行交互。我们可以通过这两个方法，合理地管理那些对用户可见的资源。比如在 onStart()方法中对资源进行加载，而在 onStop()方法中对资源进行释放，从而保证处于停止状态的活动不会占用过多内存。</li>
+<li>前台生存期。活动在 onResume()方法和 onPause()方法之间所经历的就是前台生存期。在前台生存期内，活动总是处于运行状态的，此时的活动是可以和用户进行交互的，我们平时看到和接触最多的也就是这个状态下的活动。</li>
+</ul>
+<p><img src="/2018/11/12/第二章：认识活动、Intent、活动的生命周期、活动的启动模式、实践/安卓生命周期示意图.jpeg" alt=""></p>
+<h2 id="体验活动的生命周期"><a href="#体验活动的生命周期" class="headerlink" title="体验活动的生命周期"></a>体验活动的生命周期</h2><ol>
+<li>创建新项目ActivityLifeCycleTest，勾选创建新活动，再创建两个子活动分别为NormalActivity和DialogActivity布局文件分别为normal_layout和dialog_layout</li>
+<li><p>编辑normal_layout文件  </p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt; LinearLayout xmlns: <span class="attr">android</span> =<span class="string">" http:// schemas. android. com/ apk/ res/ android"</span> </span><br><span class="line">	android: <span class="attr">orientation</span> =<span class="string">" vertical"</span> </span><br><span class="line">	android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">	android: layout_ <span class="attr">height</span> =<span class="string">" match_ parent"</span> &gt; </span><br><span class="line">		&lt; TextView android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">		android: layout_ <span class="attr">height</span> =<span class="string">" wrap_ content"</span> </span><br><span class="line">		android: <span class="attr">text</span> =<span class="string">" This is a normal activity"</span> /&gt; </span><br><span class="line">&lt;/ LinearLayout &gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑dialog_layout文件</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt; LinearLayout xmlns: <span class="attr">android</span> =<span class="string">" http:// schemas. android. com/ apk/ res/ android"</span> </span><br><span class="line">	android: <span class="attr">orientation</span> =<span class="string">" vertical"</span> </span><br><span class="line">	android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">	android: layout_ <span class="attr">height</span> =<span class="string">" match_ parent"</span> &gt; </span><br><span class="line">		&lt; TextView </span><br><span class="line">			android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">			android: layout_ <span class="attr">height</span> =<span class="string">" wrap_ content"</span> </span><br><span class="line">			android: <span class="attr">text</span> =<span class="string">" This is a dialog activity"</span> /&gt; </span><br><span class="line">&lt;/ LinearLayout &gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改AndroidManifest中的<code>&lt;activity&gt;</code>标签配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt; <span class="attr">activity</span> </span></span><br><span class="line"><span class="tag">	<span class="attr">android:</span> <span class="attr">name</span> =<span class="string">". NormalActivity"</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">activity</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt; <span class="attr">activity</span> </span></span><br><span class="line"><span class="tag">	<span class="attr">android:</span> <span class="attr">name</span> =<span class="string">". DialogActivity"</span> </span></span><br><span class="line"><span class="tag">	<span class="attr">android:</span> <span class="attr">theme</span> =<span class="string">"@ style/ Theme. AppCompat. Dialog"</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">activity</span> &gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>对DialogActivity使用了一个@style/Theme.AppCompat.Dialog，意思是让DialogActivity使用对话框的形式</p>
+<ol>
+<li><p>修改activity_main定制主活动布局    </p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt; LinearLayout xmlns: <span class="attr">android</span> =<span class="string">" http:// schemas. android. com/ apk/ res/ android"</span> </span><br><span class="line">	android: <span class="attr">orientation</span> =<span class="string">" vertical"</span> </span><br><span class="line">	android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">	android: layout_ <span class="attr">height</span> =<span class="string">" match_ parent"</span> &gt; </span><br><span class="line">	</span><br><span class="line">	&lt; Button </span><br><span class="line">		android: <span class="attr">id</span> =<span class="string">"@ + id/ start_ normal_ activity"</span> </span><br><span class="line">		android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">		android: layout_ <span class="attr">height</span> =<span class="string">" wrap_ content"</span> </span><br><span class="line">		android: <span class="attr">text</span> =<span class="string">" Start NormalActivity"</span> /&gt; </span><br><span class="line">	&lt; Button </span><br><span class="line">		android: <span class="attr">id</span> =<span class="string">"@ + id/ start_ dialog_ activity"</span> </span><br><span class="line">		android: layout_ <span class="attr">width</span> =<span class="string">" match_ parent"</span> </span><br><span class="line">		android: layout_ <span class="attr">height</span> =<span class="string">" wrap_ content"</span> </span><br><span class="line">		android: <span class="attr">text</span> =<span class="string">" Start DialogActivity"</span> /&gt; </span><br><span class="line">&lt;/ LinearLayout &gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后修改MainActivity中的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123; </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">( Bundle savedInstanceState)</span> </span>&#123; </span><br><span class="line">		<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">		Log. d( TAG,<span class="string">" onCreate"</span>); </span><br><span class="line">		setContentView( R. layout. activity_ main); </span><br><span class="line">		Button startNormalActivity = (Button) findViewById( R. id. start_ normal_ activity); </span><br><span class="line">		Button startDialogActivity = (Button) findViewById( R. id. start_ dialog_ activity); </span><br><span class="line">		startNormalActivity. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">			<span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">				Intent intent = <span class="keyword">new</span> Intent( MainActivity. <span class="keyword">this</span>, NormalActivity. <span class="class"><span class="keyword">class</span>)</span>; </span><br><span class="line">				startActivity( intent); </span><br><span class="line">				&#125; </span><br><span class="line">		&#125;); </span><br><span class="line">		startDialogActivity. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">			<span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">			Intent intent = <span class="keyword">new</span> Intent( </span><br><span class="line">			MainActivity. <span class="keyword">this</span>, DialogActivity. <span class="class"><span class="keyword">class</span>)</span>; </span><br><span class="line">			startActivity( intent); </span><br><span class="line">			&#125; </span><br><span class="line">		&#125;); </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		<span class="keyword">super</span>. onStart(); </span><br><span class="line">		Log. d( TAG, <span class="string">"onStart"</span>); </span><br><span class="line">		&#125; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		<span class="keyword">super</span>. onResume(); </span><br><span class="line">		Log. d( TAG, <span class="string">"onResume"</span>); </span><br><span class="line">		&#125; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		<span class="keyword">super</span>. onPause(); Log. d( TAG, <span class="string">"onPause"</span>); </span><br><span class="line">		&#125; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		<span class="keyword">super</span>. onStop(); </span><br><span class="line">		Log. d( TAG, <span class="string">"onStop"</span>); </span><br><span class="line">		&#125; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123; </span><br><span class="line">	<span class="keyword">super</span>. onDestroy(); </span><br><span class="line">	Log. d( TAG, <span class="string">"onDestroy"</span>); </span><br><span class="line">		&#125; </span><br><span class="line">	<span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onRestart</span><span class="params">()</span> </span>&#123; </span><br><span class="line">	<span class="keyword">super</span>. onRestart(); </span><br><span class="line">	Log. d( TAG, <span class="string">"onRestart"</span>); </span><br><span class="line">		&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="处理活动被回收的情况"><a href="#处理活动被回收的情况" class="headerlink" title="处理活动被回收的情况"></a>处理活动被回收的情况</h2><p>设想：有一个活动A，在A的基础上启动了B，然后A意外被系统回收，此时用户按下back键，就会返回到A，但是时调用A的onCreate方法创建了一个A，如果A上有临时数据就会消失，为了解决这个问题，Activity提供了一个函数onSaveInstanceState方法，保证活动在被销毁的时候一定调用这个函数，此函数携带一个Bundle类型的参数，Bundle提供了一系列方法用于保存数据，不如putString方法保存字符串，putInt方法保存整形变量，每个保存方法传入两个参数，第一个参数是键，第二个是真正要保存的内容</p>
+<ol>
+<li><p>在MainActivity中重写onSaveInstanceState函数就可以保存数据</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">( Bundle outState)</span> </span>&#123; </span><br><span class="line">	<span class="keyword">super</span>. onSaveInstanceState( outState); </span><br><span class="line">	String tempData = <span class="string">"Something you just typed"</span>; </span><br><span class="line">	outState. putString(<span class="string">" data_ key"</span>, tempData); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改onCreate方法</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Override </span><br><span class="line"><span class="keyword">protected</span> <span class="literal">void</span> onCreate( Bundle savedInstanceState) &#123; </span><br><span class="line">	super. onCreate( savedInstanceState); </span><br><span class="line">	<span class="keyword">Log</span>. d( <span class="built_in">TAG</span>, <span class="string">"onCreate"</span>); </span><br><span class="line">	setContentView( R. layout. activity_ main); </span><br><span class="line">	<span class="keyword">if</span> (savedInstanceState != <span class="built_in">null</span>) &#123; </span><br><span class="line">		<span class="built_in">String</span> tempData = savedInstanceState. getString(<span class="string">" data_ key"</span>); </span><br><span class="line">		<span class="keyword">Log</span>. d( <span class="built_in">TAG</span>, tempData); </span><br><span class="line">		&#125; </span><br><span class="line">	<span class="params">...</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>取出值以后再进行赋值就可以获得我们想要的东西了  </p>
+<p><strong>Intent可以和Bundle一起用，先将所有数据保存在Bundle中，然后再将Bundle放进Intent中，到了目标活动再取出Intent，再从Bundle中取出数据即可</strong></p>
+<h1 id="活动的启动模式"><a href="#活动的启动模式" class="headerlink" title="活动的启动模式"></a>活动的启动模式</h1><p>活动启动模式一共有4种，分别是standard、singleTop、singleTask、singleInstance，可以在AndroidManifest中给<code>&lt;activity&gt;</code>标签指定android:launchMode属性来选择启动模式  </p>
+<h2 id="standard"><a href="#standard" class="headerlink" title="standard"></a>standard</h2><p>standard是活动的默认启动模式，在 standard模式（即默认情况）下，每当启动一个新的活动，它就会在返回栈中入栈，并处于栈顶的位置。对于使用 standard模式的活动，系统不会在乎这个活动是否已经在返回栈中存在，每次启动都会创建该活动的一个新的实例</p>
+<h2 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h2><p>当活动的启动模式指定为 singleTop，在启动活动时如果发现返回栈的栈顶已经是该活动，则认为可以直接使用它，不会再创建新的活动实例</p>
+<h2 id="singleTask"><a href="#singleTask" class="headerlink" title="singleTask"></a>singleTask</h2><p>当活动的启动模式指定为 singleTask，每次启动该活动时系统首先会在返回栈中检查是否存在该活动的实例，如果发现已经存在则直接使用该实例，并把在这个活动之上的所有活动统统出栈，如果没有发现就会创建一个新的活动实例。</p>
+<h2 id="singleInstance"><a href="#singleInstance" class="headerlink" title="singleInstance"></a>singleInstance</h2><p>不同于以上 3种启动模式，指定为 singleInstance模式的活动会启用一个新的返回栈来管理这个活动（其实如果 singleTask模式指定了不同的 taskAffinity，也会启动一个新的返回栈），不管是哪个应用程序来访问这个活动，都共用的同一个返回栈，也就解决了共享活动实例的问题。</p>
+<ul>
+<li><p>singleInstance实践</p>
+<ul>
+<li><p>修改AndroidManifest里面SecondActivity的启动模式</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt; <span class="attr">activity</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">". SecondActivity"</span> <span class="attr">android:</span> <span class="attr">launchMode</span> =<span class="string">" singleInstance"</span> &gt;</span> </span><br><span class="line">	<span class="tag">&lt; <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">action</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" com. example. activitytest. ACTION_ START"</span> /&gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">category</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" android. intent. category. DEFAULT"</span> /&gt;</span> </span><br><span class="line">		<span class="tag">&lt; <span class="attr">category</span> <span class="attr">android:</span> <span class="attr">name</span> =<span class="string">" com. example. activitytest. MY_ CATEGORY"</span> /&gt;</span> </span><br><span class="line">	<span class="tag">&lt;/ <span class="attr">intent-filter</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">activity</span> &gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改FirstActivity中onCreate中的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">( Bundle savedInstanceState)</span> </span>&#123; </span><br><span class="line">	<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">	Log. d(<span class="string">" FirstActivity"</span>, <span class="string">"Task id is "</span> + getTaskId()); </span><br><span class="line">	setContentView( R. layout. first_ layout); </span><br><span class="line">	Button button1 = (Button) findViewById( R. id. button_ <span class="number">1</span>); </span><br><span class="line">	button1. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">		<span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">			Intent intent = <span class="keyword">new</span> Intent( FirstActivity. <span class="keyword">this</span>, SecondActivity. <span class="class"><span class="keyword">class</span>)</span>; </span><br><span class="line">			startActivity( intent); </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在onCreate中打印了当前返回栈的id  </p>
+</li>
+<li><p>修改SecondActivity中onCreate的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">( Bundle savedInstanceState)</span> </span>&#123; </span><br><span class="line">	<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">	Log. d(<span class="string">" SecondActivity"</span>, <span class="string">"Task id is "</span> + getTaskId()); </span><br><span class="line">	setContentView( R. layout. second_ layout); </span><br><span class="line">	Button button2 = (Button) findViewById( R. id. button_ <span class="number">2</span>); </span><br><span class="line">	button2. setOnClickListener( <span class="keyword">new</span> View. OnClickListener() &#123; </span><br><span class="line">		<span class="meta">@Override</span> </span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">			Intent intent = <span class="keyword">new</span> Intent( SecondActivity. <span class="keyword">this</span>, ThirdActivity. <span class="class"><span class="keyword">class</span>)</span>; startActivity( intent); </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样打印了当前返回栈的id，并修改了按钮代码用于启动ThirdActivity  </p>
+</li>
+<li><p>修改ThirdActivity中的onCreate代码</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">( Bundle savedInstanceState)</span> </span>&#123; </span><br><span class="line">	<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">	Log. d(<span class="string">" ThirdActivity"</span>, <span class="string">"Task id is "</span> + getTaskId()); </span><br><span class="line">	setContentView( R. layout. third_ layout); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终在FirstActivity中启动SecondActivity，然后在SecondActivity中启动ThirdActivity，会发现FirstActivity和ThirdActivity的返回栈id一样，SecondActivity不一样，按下返回键会返回到FirstActivity，再按下返回键会返回到SecondActivity  </p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="活动管理器（知晓、管理活动）"><a href="#活动管理器（知晓、管理活动）" class="headerlink" title="活动管理器（知晓、管理活动）"></a>活动管理器（知晓、管理活动）</h1><ul>
+<li>创建BaseActivity类<br>这里的BaseActivity类不需要在AndroidManifest中注册，因此创建为普通的java类，继承AppCompatActivity类，重写onCreate方法<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123; </span><br><span class="line">	<span class="meta">@Override</span> </span><br><span class="line">	<span class="keyword">protected</span> void onCreate( <span class="type">Bundle</span> savedInstanceState) &#123; </span><br><span class="line">		<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">		<span class="type">Log</span>. d(<span class="string">" BaseActivity"</span>, getClass(). getSimpleName()); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在onCreate中打印出当前实例的类名，接下来修改所有活动的父类，让它们继承BaseActivity即可</p>
+<h2 id="随时退出程序（活动管理器）"><a href="#随时退出程序（活动管理器）" class="headerlink" title="随时退出程序（活动管理器）"></a>随时退出程序（活动管理器）</h2><ul>
+<li>创建一个ActivityCollector类，代码如下<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ActivityCollector</span> &#123; </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> List &lt; Activity &gt; activities = <span class="keyword">new</span> ArrayList &lt; &gt;(); </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addActivity</span>(<span class="params"> Activity activity</span>)</span> &#123; </span><br><span class="line">		activities. <span class="keyword">add</span>( activity); </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">removeActivity</span>(<span class="params"> Activity activity</span>)</span> &#123; </span><br><span class="line">		activities. <span class="keyword">remove</span>( activity); </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">finishAll</span>(<span class="params"></span>)</span> &#123; </span><br><span class="line">		<span class="keyword">for</span> (Activity activity : activities) &#123; </span><br><span class="line">			<span class="keyword">if</span> (! activity. isFinishing()) &#123; </span><br><span class="line">				activity. finish(); </span><br><span class="line">			&#125; </span><br><span class="line">		&#125; </span><br><span class="line">		activities. clear(); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过一个List来暂存活动，然后提供了一个addActivity方法用于向List中添加一个活动，提供removeActivity方法用于从List中移除活动，最后一个finishAll用于将List中的活动全部销毁。</p>
+<ul>
+<li>修改BaseActivity中的代码<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123; </span><br><span class="line">	<span class="meta">@Override</span> </span><br><span class="line">	<span class="keyword">protected</span> void onCreate( <span class="type">Bundle</span> savedInstanceState) &#123; </span><br><span class="line">		<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">		<span class="type">Log</span>. d(<span class="string">" BaseActivity"</span>, getClass(). getSimpleName()); </span><br><span class="line">		<span class="type">ActivityCollector</span>. addActivity( <span class="keyword">this</span>); </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="meta">@Override</span> </span><br><span class="line">	<span class="keyword">protected</span> void onDestroy() &#123; </span><br><span class="line">		<span class="keyword">super</span>. onDestroy(); </span><br><span class="line">		<span class="type">ActivityCollector</span>. removeActivity( <span class="keyword">this</span>); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在 BaseActivity的 onCreate()方法中调用了ActivityCollector的addActivity()方法，表明将当前正在创建的活动添加到活动管理器里。然后在BaseActivity中重写onDestroy()方法，并调用了ActivityCollector的removeActivity()方法，表明将一个马上要销毁的活动从活动管理器里移除。从此以后，不管你想在什么地方退出程序，只需要调用 ActivityCollector. finishAll()方法就可以了</p>
+<ul>
+<li>例如<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ThirdActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123; </span><br><span class="line">	<span class="meta">@Override</span> </span><br><span class="line">	<span class="keyword">protected</span> void onCreate( <span class="type">Bundle</span> savedInstanceState) &#123; </span><br><span class="line">		<span class="keyword">super</span>. onCreate( savedInstanceState); </span><br><span class="line">		<span class="type">Log</span>. d(<span class="string">" ThirdActivity"</span>, <span class="string">"Task id is "</span> + getTaskId()); </span><br><span class="line">		setContentView( <span class="type">R</span>. layout. third_ layout); </span><br><span class="line">		<span class="type">Button</span> button3 = (<span class="type">Button</span>) findViewById( <span class="type">R</span>. id. button_ <span class="number">3</span>); </span><br><span class="line">		button3. setOnClickListener( <span class="keyword">new</span> <span class="type">View</span>. <span class="type">OnClickListener</span>() &#123; </span><br><span class="line">			<span class="meta">@Override</span> </span><br><span class="line">			public void onClick( <span class="type">View</span> v) &#123; </span><br><span class="line">				<span class="comment">//确保杀死进程</span></span><br><span class="line">				android.os.<span class="type">Process</span>.killProcess(android.os.<span class="type">Process</span>.myPid();</span><br><span class="line">				<span class="type">ActivityCollector</span>. finishAll(); </span><br><span class="line">			&#125; </span><br><span class="line">		&#125;); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="启动活动的最佳写法"><a href="#启动活动的最佳写法" class="headerlink" title="启动活动的最佳写法"></a>启动活动的最佳写法</h2><ul>
+<li>在活动中构建ActionStart函数，以SecondActivity为例<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123; </span><br><span class="line">	public static void actionStart( <span class="type">Context</span> context, <span class="type">String</span> data1, <span class="type">String</span> data2) &#123; </span><br><span class="line">		<span class="type">Intent</span> intent = <span class="keyword">new</span> <span class="type">Intent</span>( context, <span class="type">SecondActivity</span>. <span class="class"><span class="keyword">class</span>)</span>; </span><br><span class="line">		intent. putExtra(<span class="string">" param1"</span>, data1); </span><br><span class="line">		intent. putExtra(<span class="string">" param2"</span>, data2); </span><br><span class="line">		context. startActivity( intent); </span><br><span class="line">	&#125; </span><br><span class="line">	... </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在 SecondActivity中添加了一个 actionStart()方法，在这个方法中完成了 Intent的构建，另外所有 SecondActivity中需要的数据都是通过 actionStart()方法的参数传递过来的，然后把它们存储到 Intent中，最后调用 startActivity()方法启动 SecondActivity  </p>
+<ul>
+<li><p>现在在FirstActivity中启动SecondActivity的方法如下</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">button1. setOnClickListener( <span class="keyword">new</span> OnClickListener() &#123; </span><br><span class="line">	<span class="meta">@Override</span> </span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">( View v)</span> </span>&#123; </span><br><span class="line">		SecondActivity. actionStart( FirstActivity. <span class="keyword">this</span>, <span class="string">"data1"</span>, <span class="string">"data2"</span>); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样代码就清晰很多，启动活动需要的数据也全部清楚</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果我的文章对你有帮助，你可以自愿进行捐赠</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ZaneCode6574 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="ZaneCode6574 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/活动/" rel="tag"># 活动</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/12/第一章：Android系统架构、组件、日志区分、java项目文件结构/" rel="next" title="第一章：Android系统架构、组件、日志区分、java项目文件结构">
+                <i class="fa fa-chevron-left"></i> 第一章：Android系统架构、组件、日志区分、java项目文件结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/13/第三章：UI开发、布局、控件/" rel="prev" title="第三章：UI开发、布局、控件">
+                第三章：UI开发、布局、控件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZaneCode6574</p>
+              <p class="site-description motion-element" itemprop="description">这是ZaneCode6574的博客，用来记录我的轨迹和部分动态</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zanecode6574" title="GitHub &rarr; https://github.com/zanecode6574" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zanecode6574@gmail.com" title="E-Mail &rarr; mailto:zanecode6574@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Codeeeeeeeeee" title="Weibo &rarr; https://weibo.com/Codeeeeeeeeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://pan.234432.xyz" title="网盘 &rarr; http://pan.234432.xyz" rel="noopener" target="_blank"><i class="fa fa-fw fa-sitemap"></i>网盘</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#手动创建一个活动"><span class="nav-number">1.</span> <span class="nav-text">手动创建一个活动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Toast"><span class="nav-number">2.</span> <span class="nav-text">使用Toast</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在活动中加载Menu"><span class="nav-number">3.</span> <span class="nav-text">在活动中加载Menu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#给菜单添加响应事件"><span class="nav-number">3.1.</span> <span class="nav-text">给菜单添加响应事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#销毁一个活动"><span class="nav-number">4.</span> <span class="nav-text">销毁一个活动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Intent的使用（在活动之间传递数据）"><span class="nav-number">5.</span> <span class="nav-text">Intent的使用（在活动之间传递数据）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示Intent"><span class="nav-number">5.1.</span> <span class="nav-text">显示Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式Intent"><span class="nav-number">5.2.</span> <span class="nav-text">隐式Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Intent在活动之间传递数据"><span class="nav-number">5.3.</span> <span class="nav-text">使用Intent在活动之间传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传递数据给下一个活动"><span class="nav-number">5.3.1.</span> <span class="nav-text">传递数据给下一个活动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回数据给上一个活动"><span class="nav-number">5.3.2.</span> <span class="nav-text">返回数据给上一个活动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多隐式Intent用法"><span class="nav-number">5.4.</span> <span class="nav-text">更多隐式Intent用法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#活动的生命周期"><span class="nav-number">6.</span> <span class="nav-text">活动的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#返回栈"><span class="nav-number">6.1.</span> <span class="nav-text">返回栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#活动状态"><span class="nav-number">6.2.</span> <span class="nav-text">活动状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#活动的生存期"><span class="nav-number">6.3.</span> <span class="nav-text">活动的生存期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#体验活动的生命周期"><span class="nav-number">6.4.</span> <span class="nav-text">体验活动的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理活动被回收的情况"><span class="nav-number">6.5.</span> <span class="nav-text">处理活动被回收的情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#活动的启动模式"><span class="nav-number">7.</span> <span class="nav-text">活动的启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#standard"><span class="nav-number">7.1.</span> <span class="nav-text">standard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#singleTop"><span class="nav-number">7.2.</span> <span class="nav-text">singleTop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#singleTask"><span class="nav-number">7.3.</span> <span class="nav-text">singleTask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#singleInstance"><span class="nav-number">7.4.</span> <span class="nav-text">singleInstance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#活动管理器（知晓、管理活动）"><span class="nav-number">8.</span> <span class="nav-text">活动管理器（知晓、管理活动）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#随时退出程序（活动管理器）"><span class="nav-number">8.1.</span> <span class="nav-text">随时退出程序（活动管理器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动活动的最佳写法"><span class="nav-number">8.2.</span> <span class="nav-text">启动活动的最佳写法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZaneCode6574</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">580k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">8:47</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'xKfPPGoNPXh0K9Dh2BNweXq7-gzGzoHsz',
+        appKey: 'pmn3qfbAaEDbI2yWiYC2SqyY',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":240,"height":480},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "cc8014cb"
+    });
+  daovoice('update');
+  </script>
+
+
+  <meta name="description" content="简介Flutter特点 跨平台：现在Flutter至少可以跨5种平台，甚至支持嵌入式开发。我们常用的有MacOS、Windows、Linux、Android、iOS，甚至可以在谷歌最新的操作系统Fuchsia上运行。到目前为止，Flutter算是支持平台最多的框架了，良好的跨平台性，直接带来的好处就是减少开发成本。 丝滑般的体验：使用Flutter内置高大上的Material Design和Cup">
+<meta name="keywords" content="Flutter基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一章：Flutter基础知识">
+<meta property="og:url" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/index.html">
+<meta property="og:site_name" content="ZaneCode6574的博客">
+<meta property="og:description" content="简介Flutter特点 跨平台：现在Flutter至少可以跨5种平台，甚至支持嵌入式开发。我们常用的有MacOS、Windows、Linux、Android、iOS，甚至可以在谷歌最新的操作系统Fuchsia上运行。到目前为止，Flutter算是支持平台最多的框架了，良好的跨平台性，直接带来的好处就是减少开发成本。 丝滑般的体验：使用Flutter内置高大上的Material Design和Cup">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/类层次结构.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/有状态Wiget继承示意图.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/状态的生命周期.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/Flutter框架.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/ThemeData.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/ThemeData2.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/Result1.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/Flutter官方示例.JPG">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/dependencies.JPG">
+<meta property="og:updated_time" content="2019-02-23T06:27:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第一章：Flutter基础知识">
+<meta name="twitter:description" content="简介Flutter特点 跨平台：现在Flutter至少可以跨5种平台，甚至支持嵌入式开发。我们常用的有MacOS、Windows、Linux、Android、iOS，甚至可以在谷歌最新的操作系统Fuchsia上运行。到目前为止，Flutter算是支持平台最多的框架了，良好的跨平台性，直接带来的好处就是减少开发成本。 丝滑般的体验：使用Flutter内置高大上的Material Design和Cup">
+<meta name="twitter:image" content="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/类层次结构.JPG">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZaneCode6574的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>第一章：Flutter基础知识 | ZaneCode6574的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZaneCode6574的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">时光机</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/02/23/第一章：Flutter基础知识/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">第一章：Flutter基础知识
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-23 13:21:37 / 修改时间：14:27:27" itemprop="dateCreated datePublished" datetime="2019-02-23T13:21:37+08:00">2019-02-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/23/第一章：Flutter基础知识/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/23/第一章：Flutter基础知识/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">10 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="Flutter特点"><a href="#Flutter特点" class="headerlink" title="Flutter特点"></a>Flutter特点</h2><ul>
+<li>跨平台：现在Flutter至少可以跨5种平台，甚至支持嵌入式开发。我们常用的有MacOS、Windows、Linux、Android、iOS，甚至可以在谷歌最新的操作系统Fuchsia上运行。到目前为止，Flutter算是支持平台最多的框架了，良好的跨平台性，直接带来的好处就是减少开发成本。</li>
+<li>丝滑般的体验：使用Flutter内置高大上的Material Design和Cupertino风格组件、丰富的motion API、平滑而自然的滑动效果和平台感知，为用户带来全新体验。</li>
+<li>响应式框架：使用Flutter的、响应式框架和一系列基础组件，可以轻松构建用户界面。使用功能强大且灵活的API（针对2D、动画、手势、效果等）能解决艰难的UI挑战。</li>
+<li>支持插件：通过Flutter的插件可以访问平台本地API，如相机、蓝牙、WiFi等。借助现有的Java、Swift、Objective C、C++代码实现对原生系统的调用。</li>
+<li>60fps超高性能：Flutter采用GPU渲染技术，所以性能极高。Flutter编写的应用是可以达到60fps（每秒传输帧数），这也就是说，它完全可以胜任游戏的制作。官方宣称用Flutter开发的应用甚至会超过原生应用的性能。</li>
+</ul>
+<a id="more"></a>
+<h3 id="一切皆为组件"><a href="#一切皆为组件" class="headerlink" title="一切皆为组件"></a>一切皆为组件</h3><p>组件（Widget）是Flutter应用程序用户界面的基本构建块。不仅按钮、输入框、卡片、列表这些内容可作为Widget，甚至将布局方式、动画处理都视为Widget。所以Flutter具有一致的统一对象模型：Widget。</p>
+<p>Widget可以定义为：</p>
+<ul>
+<li>一个界面组件（如按钮或输入框）。</li>
+<li>一个文本样式（如字体或颜色）。</li>
+<li>一种布局（如填充或滚动）。</li>
+<li>一种动画处理（如缓动）。</li>
+<li>一种手势处理（GestureDetector）。</li>
+</ul>
+<p>Widget具有丰富的属性及方法，属性通常用来改变组件的状态（颜色、大小等）及回调方法的处理（单击事件回调、手势事件回调等）。方法主要是提供一些组件的功能扩展。比如：TextBox是一个矩形的文本组件，其属性及方法如下：</p>
+<ul>
+<li>bottom：底部间距属性。</li>
+<li>direction：文本排列方向属性。</li>
+<li>left：左侧间距属性。</li>
+<li>right：右侧间距属性。</li>
+<li>top：上部间距属性。</li>
+<li>toRect：导出矩形方法。</li>
+<li>toString：转换成字符串方法。</li>
+</ul>
+<h3 id="组件嵌套"><a href="#组件嵌套" class="headerlink" title="组件嵌套"></a>组件嵌套</h3><p>复杂的功能界面通常都是由一个一个简单功能的组件组装完成的。有的组件负责布局，有的负责定位，有的负责调整大小，有的负责渐变处理，等等。这种嵌套组合的方式带来的最大好处就是解耦。</p>
+<p>例如，界面中添加了一个居中组件Center，居中组件里嵌套了一个容器组件Container，容器组件里嵌套了一个文本组件Text和一个装饰器BoxDecoration。代码如下</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Center(</span><br><span class="line">  <span class="comment">//添加容器</span></span><br><span class="line">  child: <span class="keyword">new</span> Container(</span><br><span class="line">    <span class="comment">//添加装饰器</span></span><br><span class="line">    decoration: <span class="keyword">new</span> BoxDecoration(</span><br><span class="line">    ),</span><br><span class="line">    child: <span class="keyword">new</span> Text(</span><br><span class="line">    <span class="comment">//添加文本组件</span></span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<p>最基础的组件类是Widget，其他所有的组件都是继承Widget的，如图1-1所示。紧接着下面有两大类组件：有状态组件及无状态组件。有状态组件是界面会发生变化的组件，如Scrollable、Animatable等，无状态的组件即界面不发生变化的组件，如Text、AssetImage等。</p>
+<p><img src="/2019/02/23/第一章：Flutter基础知识/类层次结构.JPG" alt="类层次结构"></p>
+<h3 id="构建Widget"><a href="#构建Widget" class="headerlink" title="构建Widget"></a>构建Widget</h3><p>可以重写Widget的build方法来构建一个组件，如下代码<br>￼<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@protected Widget <span class="keyword">build(BuildContext </span><span class="built_in">context</span>)<span class="comment">;</span></span><br><span class="line">￼</span><br></pre></td></tr></table></figure></p>
+<p>build即为创建一个Widget的意思，返回值也是一个Widget对象，不管返回的是单个组件还是返回通过嵌套的方式组合的组件，都是Widget的实例。</p>
+<h3 id="处理用户交互"><a href="#处理用户交互" class="headerlink" title="处理用户交互"></a>处理用户交互</h3><p>如果Widget需要根据用户交互或其他因素进行更改，则该Widget是有状态的。例如，如果一个Widget的计数器在用户点击一个按钮时递增，那么该计数器的值就是该Widget的状态。当该值发生变化时，需要重新构建Widget以更新UI。</p>
+<p>这些Widget将继承StatefulWidget（而不是State）并将它们的可变状态存储在State的子类中</p>
+<p><img src="/2019/02/23/第一章：Flutter基础知识/有状态Wiget继承示意图.JPG" alt="有状态Wiget继承示意图"></p>
+<p>每当你改变一个State对象时（例如增加计数器），必须调用setState（）来通知框架，框架会再次调用State的构建方法来更新用户界面。</p>
+<p>有了独立的状态和Widget对象，其他Widget可以以同样的方式处理无状态和有状态的Widget，而不必担心丢失状态。父Widget可以自由地创造子Widget的新实例且不会失去子Widget的状态，而不是通过持有子Widget来维持其状态。框架在适当的时候完成查找和重用现有状态对象的所有工作。</p>
+<h3 id="什么是状态"><a href="#什么是状态" class="headerlink" title="什么是状态"></a>什么是状态</h3><p>Flutter中的状态和React中的状态概念一致。React的核心思想是组件化的思想，应用由组件搭建而成，而组件中最重要的概念是State（状态），State是一个组件的UI数据模型，是组件渲染时的数据依据。Flutter程序的运行可以认为是一个巨大的状态机，用户的操作、请求API和系统事件的触发都是推动状态机运行的触发点，触发点通过调用setState方法推动状态机进行响应。状态的生命周期如图</p>
+<p><img src="/2019/02/23/第一章：Flutter基础知识/状态的生命周期.JPG" alt="有状态Wiget继承示意图"></p>
+<h3 id="分层的框架"><a href="#分层的框架" class="headerlink" title="分层的框架"></a>分层的框架</h3><p>Flutter框架是一个分层的结构，每一层都建立在前一层之上。图1-4显示了Flutter框架，上层比下层的使用频率更高。</p>
+<p>有关构成Flutter分层框架的完整库，请参阅<a href="https://docs.flutter.io/" target="_blank" rel="noopener">官方的API文档</a></p>
+<p>分层设计的目标是帮助开发者用更少的代码做更多的事情。例如，Material层通常组合来自Widget层的基本Widget，而Widget层通过较低级对象渲染层来构建。</p>
+<p>分层结构为构建应用程序提供了许多选项。选择一种自定义的方法来释放框架的全部表现力，或者使用构件层中的构建块，或混合搭配。可以使用Flutter提供的所有现成的Widget，也可以使用Flutter团队用于构建框架的相同工具和技术创建定制的Widget。也就是说，你可以从高层次、统一的Widget概念中获得开发效率优势，也可以深入到下层施展才能。</p>
+<p><img src="/2019/02/23/第一章：Flutter基础知识/Flutter框架.JPG" alt="有状态Wiget继承示意图"></p>
+<h2 id="开发环境搭建"><a href="#开发环境搭建" class="headerlink" title="开发环境搭建"></a>开发环境搭建</h2><p>可以参考这里的教程<a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt1-cn/index.html#0" target="_blank" rel="noopener">codelabs.flutter-io.cn</a></p>
+<h2 id="Dart语言"><a href="#Dart语言" class="headerlink" title="Dart语言"></a>Dart语言</h2><p>Flutter使用的是Dart语言来开发的，关于Dart语言的学习可以自己搜索。</p>
+<h1 id="入口程序"><a href="#入口程序" class="headerlink" title="入口程序"></a>入口程序</h1><p>每一个Flutter项目的/lib目录下都有一个main.dart文件，打开该文件，里面应该有一个main（）函数。Flutter使用Dart语言开发，而在Dart语言中，main（）函数是Dart程序的入口，也就是说，Flutter程序在运行的时候，第一个执行的函数就是main（）函数。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void main() =&gt; runApp(<span class="name">Wiget</span> app)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>main（）函数中只调用runApp函数，使用runApp函数可以将给定的根组件填满整个屏幕。如果不调用runApp函数，项目也可以正常执行，但是屏幕上什么都不会显示。Flutter是Dart语言的移动应用框架，runApp函数就是Flutter框架的入口，如果不调用runApp函数，那你执行的就是一个Dart控制台应用。</p>
+<h1 id="Material-Design风格"><a href="#Material-Design风格" class="headerlink" title="Material Design风格"></a>Material Design风格</h1><p>每一个.dart文件的第一行几乎都会导入flutter/material.dart包，这个包是Flutter实现Material Design设计风格的基础包，里面有文本输入框（Text）、图标（Icon）、图片（Image）、行排列布局（Row）、列排列布局（Column）、Decoration（装饰器）、动画等组件，大家可以将它们理解为网页中的按钮、标题、选项框等组件库。</p>
+<p>第一行代码如下所示：<br>￼<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:flutter/material.dart';</span> </span><br><span class="line">￼</span><br></pre></td></tr></table></figure></p>
+<p>那么Material Design是谷歌推出的一套视觉设计语言。比如有的App可以换皮肤，而每一套皮肤就是一种设计语言，有古典风、炫酷风、极简风，等等，而Material Design就是谷歌风。Flutter采用的就是Material Design风格。</p>
+<h1 id="Flutter主题"><a href="#Flutter主题" class="headerlink" title="Flutter主题"></a>Flutter主题</h1><p>为了在整个应用中使用同一套颜色和字体样式，可以使用“主题”这种方式。定义主题有两种方式：全局主题，或使用Theme来定义应用程序局部的颜色和字体样式。事实上，全局主题只是由应用程序根MaterialApp创建的主题（Theme）。</p>
+<p>定义一个主题后，就可以在我们自己的Widget中使用它，Flutter提供的Material Widgets将使用主题为AppBars、Buttons、Checkboxes等设置背景颜色和字体样式。</p>
+<h2 id="创建应用主题"><a href="#创建应用主题" class="headerlink" title="创建应用主题"></a>创建应用主题</h2><p>创建主题的方法是将ThemeData提供给MaterialApp构造函数，这样就可以在整个应用程序中共享包含颜色和字体样式的主题。</p>
+<p><img src="/2019/02/23/第一章：Flutter基础知识/ThemeData.JPG" alt="ThemeData属性及描述"><br><img src="/2019/02/23/第一章：Flutter基础知识/ThemeData2.JPG" alt="ThemeData属性及描述"></p>
+<p>如果没有提供主题，Flutter会创建一个默认主题</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">new</span> <span class="selector-tag">MaterialApp</span>(</span><br><span class="line">  <span class="attribute">title</span>: title,</span><br><span class="line">  <span class="attribute">theme</span>: new ThemeData(</span><br><span class="line">    <span class="attribute">brightness</span>: Brightness.dark,</span><br><span class="line">    <span class="attribute">primaryColor</span>: Colors.lightBlue[<span class="number">800</span>],</span><br><span class="line">    <span class="attribute">accentColor</span>: Colors.cyan[<span class="number">600</span>],</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="局部主题"><a href="#局部主题" class="headerlink" title="局部主题"></a>局部主题</h2><p>如果我们想在应用程序的某一部分使用特殊的颜色，那么就需要覆盖全局的主题。</p>
+<h3 id="创建特有的主题数据"><a href="#创建特有的主题数据" class="headerlink" title="创建特有的主题数据"></a>创建特有的主题数据</h3><ul>
+<li>实例化一个ThemeData并将其传递给Theme对象</li>
+</ul>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">new Theme(</span><br><span class="line">  //创建一个特有的主题数据</span><br><span class="line">  data: new ThemeData(</span><br><span class="line">    accentColor: Colors.yellow,</span><br><span class="line">  ),</span><br><span class="line">  child: new FloatingActionButton(</span><br><span class="line">    onPressed: () &#123;&#125;,</span><br><span class="line">    child: new Icon(<span class="name">Icons</span>.add),</span><br><span class="line">  ),</span><br><span class="line">)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="扩展父主题"><a href="#扩展父主题" class="headerlink" title="扩展父主题"></a>扩展父主题</h3><p>扩展父主题时无须覆盖所有的主题属性，我们可以通过使用copyWith方法来实现，代码如下：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new Theme(</span><br><span class="line">  //覆盖accentColor为Colors.yellow</span><br><span class="line">  data: Theme.of(<span class="name">context</span>).copyWith(<span class="name">accentColor</span>: Colors.yellow),</span><br><span class="line">  child: new FloatingActionButton(</span><br><span class="line">    onPressed: null,</span><br><span class="line">    child: new Icon(<span class="name">Icons</span>.add),</span><br><span class="line">  ),</span><br><span class="line">)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h2><p>首先，函数Theme.of（context）可以通过上下文来获取主题，方法是查找最近的主题，如果找不到就会找整个应用的主题。</p>
+<p>下面来看一个简单的示例，应用的主题颜色定义为绿色，界面中间再加一个带有背景色的文本。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/foundation.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line">  runApp(<span class="keyword">new</span> <span class="type">MyApp</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">final</span> appName = '自定义主题';</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: appName,</span><br><span class="line">      theme: <span class="keyword">new</span> <span class="type">ThemeData</span>(</span><br><span class="line">        brightness: <span class="type">Brightness</span>.light,<span class="comment">//应用程序整体主题的亮度</span></span><br><span class="line">        primaryColor: <span class="type">Colors</span>.lightGreen[<span class="number">600</span>],<span class="comment">//App主要部分的背景色</span></span><br><span class="line">        accentColor: <span class="type">Colors</span>.orange[<span class="number">600</span>],<span class="comment">//前景色（文本、按钮等）</span></span><br><span class="line">      ),</span><br><span class="line">      home: <span class="keyword">new</span> <span class="type">MyHomePage</span>(</span><br><span class="line">        title: appName,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="type">String</span> title;</span><br><span class="line"></span><br><span class="line">  <span class="type">MyHomePage</span>(&#123;<span class="type">Key</span> key, <span class="meta">@required</span> <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line"><span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">Scaffold</span>(</span><br><span class="line">      appBar: <span class="keyword">new</span> <span class="type">AppBar</span>(</span><br><span class="line">        title: <span class="keyword">new</span> <span class="type">Text</span>(title),</span><br><span class="line">      ),</span><br><span class="line">      body: <span class="keyword">new</span> <span class="type">Center</span>(</span><br><span class="line">        child: <span class="keyword">new</span> <span class="type">Container</span>(</span><br><span class="line">          <span class="comment">//获取主题的accentColor</span></span><br><span class="line">          color: <span class="type">Theme</span>.of(context).accentColor,</span><br><span class="line">          child: <span class="keyword">new</span> <span class="type">Text</span>(</span><br><span class="line">            '带有背景颜色的文本组件',</span><br><span class="line">            style: <span class="type">Theme</span>.of(context).textTheme.title,</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: <span class="keyword">new</span> <span class="type">Theme</span>(</span><br><span class="line">        <span class="comment">//使用copyWith的方式获取accentColor</span></span><br><span class="line">        data: <span class="type">Theme</span>.of(context).copyWith(accentColor: <span class="type">Colors</span>.grey),</span><br><span class="line">        child: <span class="keyword">new</span> <span class="type">FloatingActionButton</span>(</span><br><span class="line">          onPressed: <span class="literal">null</span>,</span><br><span class="line">          child: <span class="keyword">new</span> <span class="type">Icon</span>(<span class="type">Icons</span>.computer),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/23/第一章：Flutter基础知识/Result1.JPG" alt="ThemeData属性及描述"></p>
+<h1 id="无状态组件和有状态组件"><a href="#无状态组件和有状态组件" class="headerlink" title="无状态组件和有状态组件"></a>无状态组件和有状态组件</h1><p>无状态组件（StatelessWidget）是不可变的，这意味着它们的属性不能改变，所有的值都是最终的。</p>
+<p>有状态组件（StatefulWidget）持有的状态可能在Widget生命周期中发生变化。实现一个StatefulWidget至少需要两个类</p>
+<ul>
+<li>一个StatefulWidget类。</li>
+<li>一个State类。StatefulWidget类本身是不变的，但是State类在Widget生命周期中始终存在。</li>
+</ul>
+<p><img src="/2019/02/23/第一章：Flutter基础知识/Flutter官方示例.JPG" alt="ThemeData属性及描述"></p>
+<ul>
+<li>示例代码中MyHomePage必须继承自StatefulWidget类</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>重写createState方法</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">override</span></span><br><span class="line"><span class="function">MyHomePageState <span class="title">createState</span>(<span class="params"></span>)</span> =&gt; <span class="keyword">new</span> _MyHomePageState();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>状态类必须继承自State类</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State&lt;MyHomePage&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>定义一个普通变量<code>_counter</code>作为计数器变量，调用setState方法来控制这个变量的值的变化，如下所示：</li>
+</ul>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> _counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">_incrementCounter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  setState(() &#123;</span><br><span class="line">    <span class="comment">//计数器变量</span></span><br><span class="line">    _counter++;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整的示例代码</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"></span><br><span class="line">void main() =&gt; runApp(<span class="keyword">new</span> <span class="type">MyApp</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">//MyApp不需要做状态处理，所以此组件继承StatelessWidget即可</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 这个组件是整个应用的主组件</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'Flutter</span> <span class="type">Demo</span>',</span><br><span class="line">      theme: <span class="keyword">new</span> <span class="type">ThemeData</span>(</span><br><span class="line">        <span class="comment">//自定义主题</span></span><br><span class="line">        primarySwatch: <span class="type">Colors</span>.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: <span class="keyword">new</span> <span class="type">MyHomePage</span>(title: <span class="symbol">'Flutter</span> <span class="type">Demo</span> <span class="type">Home</span> <span class="type">Page</span>'),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主页需要继承自StatefulWidget</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="type">MyHomePage</span>(&#123;<span class="type">Key</span> key, <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//标题</span></span><br><span class="line">  <span class="keyword">final</span> <span class="type">String</span> title;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//必须重写createState方法</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _MyHomePageState createState() =&gt; <span class="keyword">new</span> _MyHomePageState();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//状态类必须继承State类,注意后面需要指定为&lt;MyHomePage&gt;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State&lt;MyHomePage&gt;</span> </span>&#123;</span><br><span class="line">  int _counter = <span class="number">0</span>;<span class="comment">//计数器</span></span><br><span class="line"></span><br><span class="line">  void _incrementCounter() &#123;</span><br><span class="line">    <span class="comment">//调用State类里的setState方法来更改状态值，使得计数器加1</span></span><br><span class="line">    setState(() &#123;</span><br><span class="line">      <span class="comment">//计数器变量，每次点击让其加1</span></span><br><span class="line">      _counter++;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">Scaffold</span>(</span><br><span class="line">      appBar: <span class="keyword">new</span> <span class="type">AppBar</span>(</span><br><span class="line">        title: <span class="keyword">new</span> <span class="type">Text</span>(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      <span class="comment">//居中布局</span></span><br><span class="line">      body: <span class="keyword">new</span> <span class="type">Center</span>(</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//垂直布局</span></span><br><span class="line">        child: <span class="keyword">new</span> <span class="type">Column</span>(</span><br><span class="line">          <span class="comment">//主轴居中对齐</span></span><br><span class="line">          mainAxisAlignment: <span class="type">MainAxisAlignment</span>.center,</span><br><span class="line">          children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">            <span class="keyword">new</span> <span class="type">Text</span>(</span><br><span class="line">              <span class="symbol">'You</span> have pushed the button <span class="keyword">this</span> many times:',</span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">new</span> <span class="type">Text</span>(</span><br><span class="line">              '$_counter',<span class="comment">//绑定计数器的值</span></span><br><span class="line">              style: <span class="type">Theme</span>.of(context).textTheme.display1,</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),...</span><br></pre></td></tr></table></figure>
+<h1 id="使用包资源"><a href="#使用包资源" class="headerlink" title="使用包资源"></a>使用包资源</h1><h2 id="包仓库"><a href="#包仓库" class="headerlink" title="包仓库"></a>包仓库</h2><p>所有包（package）都会发布到<a href="https://pub.dartlang.org" target="_blank" rel="noopener">Dart的包仓库</a></p>
+<h2 id="包的使用"><a href="#包的使用" class="headerlink" title="包的使用"></a>包的使用</h2><ul>
+<li><p>打开pubspec.yaml文件，在dependencies下添加包的名称及版本<br><img src="/2019/02/23/第一章：Flutter基础知识/dependencies.JPG" alt=""></p>
+</li>
+<li><p>点击Packages get</p>
+</li>
+<li>打开main.dart文件，导入包</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> 'package:url_launcher/url_launcher.dart';</span></span><br></pre></td></tr></table></figure>
+<h1 id="Http请求"><a href="#Http请求" class="headerlink" title="Http请求"></a>Http请求</h1><p>HTTP协议通常用于做前后端的数据交互。Flutter请求网络有两种方法，一种是用Http请求，另一种是用HttpClient请求。</p>
+<ul>
+<li>Http请求方式</li>
+</ul>
+<p>在使用Http方式请求网络时，需要导入http包</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:http/http.dart'</span> <span class="keyword">as</span> http;</span><br></pre></td></tr></table></figure>
+<p>请看下面的完整示例代码，示例中发起了一个http的get请求，并将返回的结果信息打印到控制台里：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:http/http.dart' as http;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void main() =&gt; runApp(<span class="keyword">new</span> <span class="type">MyApp</span>());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'http</span>请求示例',</span><br><span class="line">      home: <span class="keyword">new</span> <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="keyword">new</span> <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="keyword">new</span> <span class="type">Text</span>(<span class="symbol">'http</span>请求示例'),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="keyword">new</span> <span class="type">Center</span>(</span><br><span class="line">          child: <span class="keyword">new</span> <span class="type">RaisedButton</span>(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line"></span><br><span class="line">              <span class="keyword">var</span> url = <span class="symbol">'http</span>:<span class="comment">//httpbin.org/';</span></span><br><span class="line">              <span class="comment">//向http://httpbin.org/发送get请求</span></span><br><span class="line">              http.get(url).then((response) &#123;</span><br><span class="line">                print(<span class="string">"状态： $&#123;response.statusCode&#125;"</span>);</span><br><span class="line">                print(<span class="string">"正文： $&#123;response.body&#125;"</span>);</span><br><span class="line">              &#125;);</span><br><span class="line"></span><br><span class="line">            &#125;,</span><br><span class="line">            child: <span class="keyword">new</span> <span class="type">Text</span>('发起http请求'),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>￼</p>
+<ul>
+<li>点击“发起http请求”按钮，程序开始请求指定的url，如果服务器正常返回数据，则状态码为200。控制台输出内容如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Performing hot reload...</span><br><span class="line">Syncing files to device iPhone X...</span><br><span class="line">Reloaded 1 of 509 libraries in 452ms.</span><br><span class="line">flutter: 状态： 200</span><br><span class="line">flutter: 正文： <span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>httpbin.org<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"/flasgger_static/swagger-ui.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">type</span>=<span class="string">"image/png"</span> <span class="attr">href</span>=<span class="string">"/static/favicon.ico"</span> <span class="attr">sizes</span>=<span class="string">"64x64 32x32 16x16"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        html &#123;</span></span><br><span class="line"><span class="undefined">            box-sizing: border-box;</span></span><br><span class="line"><span class="undefined">            overflow: -moz-scrollbars-vertical;</span></span><br><span class="line"><span class="undefined">            overflow-y: scroll;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        *,</span></span><br><span class="line"><span class="css">        *<span class="selector-pseudo">:before</span>,</span></span><br><span class="line"><span class="css">        *<span class="selector-pseudo">:after</span> &#123;</span></span><br><span class="line"><span class="undefined">            box-sizing: inherit;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        body &#123;</span></span><br><span class="line"><span class="undefined">            margin: 0;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background</span>: <span class="selector-id">#fafafa</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">...</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果我的文章对你有帮助，你可以自愿进行捐赠</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ZaneCode6574 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="ZaneCode6574 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flutter基础知识/" rel="tag"># Flutter基础知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/第十三章：进阶技巧/" rel="next" title="第十三章：进阶技巧">
+                <i class="fa fa-chevron-left"></i> 第十三章：进阶技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/23/第二章：Flutter常用组件/" rel="prev" title="第二章：Flutter常用组件">
+                第二章：Flutter常用组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZaneCode6574</p>
+              <p class="site-description motion-element" itemprop="description">这是ZaneCode6574的博客，用来记录我的轨迹和部分动态</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zanecode6574" title="GitHub &rarr; https://github.com/zanecode6574" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zanecode6574@gmail.com" title="E-Mail &rarr; mailto:zanecode6574@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Codeeeeeeeeee" title="Weibo &rarr; https://weibo.com/Codeeeeeeeeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://pan.234432.xyz" title="网盘 &rarr; http://pan.234432.xyz" rel="noopener" target="_blank"><i class="fa fa-fw fa-sitemap"></i>网盘</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter特点"><span class="nav-number">1.1.</span> <span class="nav-text">Flutter特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一切皆为组件"><span class="nav-number">1.1.1.</span> <span class="nav-text">一切皆为组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件嵌套"><span class="nav-number">1.1.2.</span> <span class="nav-text">组件嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建Widget"><span class="nav-number">1.1.3.</span> <span class="nav-text">构建Widget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理用户交互"><span class="nav-number">1.1.4.</span> <span class="nav-text">处理用户交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是状态"><span class="nav-number">1.1.5.</span> <span class="nav-text">什么是状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分层的框架"><span class="nav-number">1.1.6.</span> <span class="nav-text">分层的框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境搭建"><span class="nav-number">1.2.</span> <span class="nav-text">开发环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dart语言"><span class="nav-number">1.3.</span> <span class="nav-text">Dart语言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#入口程序"><span class="nav-number">2.</span> <span class="nav-text">入口程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Material-Design风格"><span class="nav-number">3.</span> <span class="nav-text">Material Design风格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flutter主题"><span class="nav-number">4.</span> <span class="nav-text">Flutter主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建应用主题"><span class="nav-number">4.1.</span> <span class="nav-text">创建应用主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#局部主题"><span class="nav-number">4.2.</span> <span class="nav-text">局部主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建特有的主题数据"><span class="nav-number">4.2.1.</span> <span class="nav-text">创建特有的主题数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展父主题"><span class="nav-number">4.2.2.</span> <span class="nav-text">扩展父主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用主题"><span class="nav-number">4.3.</span> <span class="nav-text">使用主题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无状态组件和有状态组件"><span class="nav-number">5.</span> <span class="nav-text">无状态组件和有状态组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用包资源"><span class="nav-number">6.</span> <span class="nav-text">使用包资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#包仓库"><span class="nav-number">6.1.</span> <span class="nav-text">包仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包的使用"><span class="nav-number">6.2.</span> <span class="nav-text">包的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Http请求"><span class="nav-number">7.</span> <span class="nav-text">Http请求</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZaneCode6574</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">580k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">8:47</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'xKfPPGoNPXh0K9Dh2BNweXq7-gzGzoHsz',
+        appKey: 'pmn3qfbAaEDbI2yWiYC2SqyY',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":240,"height":480},"mobile":{"show":true},"log":false});</script></body>
+</html>

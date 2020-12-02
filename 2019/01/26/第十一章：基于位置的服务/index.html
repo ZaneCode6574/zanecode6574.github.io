@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "cc8014cb"
+    });
+  daovoice('update');
+  </script>
+
+
+  <meta name="description" content="说到只有在移动设备上才能实现的技术，很容易就让人联想到基于位置的服务（Location Based Service）。由于移动设备相比于电脑可以随身携带，我们通过地理定位的技术就可以随时得知自己所在的位置，从而围绕这一点开发出很多有意思的应用。 简介基于位置的服务简称LBS，随着移动互联网的兴起，这个技术在最近的几年里十分火爆。其实它本身并不是什么时髦的技术，主要的工作原理就是利用无线电通讯网络或">
+<meta name="keywords" content="位置服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第十一章：基于位置的服务">
+<meta property="og:url" content="https://zanecode6574.github.io/2019/01/26/第十一章：基于位置的服务/index.html">
+<meta property="og:site_name" content="ZaneCode6574的博客">
+<meta property="og:description" content="说到只有在移动设备上才能实现的技术，很容易就让人联想到基于位置的服务（Location Based Service）。由于移动设备相比于电脑可以随身携带，我们通过地理定位的技术就可以随时得知自己所在的位置，从而围绕这一点开发出很多有意思的应用。 简介基于位置的服务简称LBS，随着移动互联网的兴起，这个技术在最近的几年里十分火爆。其实它本身并不是什么时髦的技术，主要的工作原理就是利用无线电通讯网络或">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/26/第十一章：基于位置的服务/LBSSdk.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/26/第十一章：基于位置的服务/Directory.png">
+<meta property="og:image" content="https://zanecode6574.github.io/2019/01/26/第十一章：基于位置的服务/Map.png">
+<meta property="og:updated_time" content="2019-01-27T07:54:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第十一章：基于位置的服务">
+<meta name="twitter:description" content="说到只有在移动设备上才能实现的技术，很容易就让人联想到基于位置的服务（Location Based Service）。由于移动设备相比于电脑可以随身携带，我们通过地理定位的技术就可以随时得知自己所在的位置，从而围绕这一点开发出很多有意思的应用。 简介基于位置的服务简称LBS，随着移动互联网的兴起，这个技术在最近的几年里十分火爆。其实它本身并不是什么时髦的技术，主要的工作原理就是利用无线电通讯网络或">
+<meta name="twitter:image" content="https://zanecode6574.github.io/2019/01/26/第十一章：基于位置的服务/LBSSdk.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZaneCode6574的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zanecode6574.github.io/2019/01/26/第十一章：基于位置的服务/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>第十一章：基于位置的服务 | ZaneCode6574的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZaneCode6574的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">时光机</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zanecode6574.github.io/2019/01/26/第十一章：基于位置的服务/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZaneCode6574">
+      <meta itemprop="description" content="这是ZaneCode6574的博客，用来记录我的轨迹和部分动态">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZaneCode6574的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">第十一章：基于位置的服务
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-26 21:52:26" itemprop="dateCreated datePublished" datetime="2019-01-26T21:52:26+08:00">2019-01-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-27 15:54:07" itemprop="dateModified" datetime="2019-01-27T15:54:07+08:00">2019-01-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/第一行代码Android/" itemprop="url" rel="index"><span itemprop="name">第一行代码Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/26/第十一章：基于位置的服务/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/26/第十一章：基于位置的服务/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">40k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">36 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>说到只有在移动设备上才能实现的技术，很容易就让人联想到基于位置的服务（Location Based Service）。由于移动设备相比于电脑可以随身携带，我们通过地理定位的技术就可以随时得知自己所在的位置，从而围绕这一点开发出很多有意思的应用。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>基于位置的服务简称LBS，随着移动互联网的兴起，这个技术在最近的几年里十分火爆。其实它本身并不是什么时髦的技术，主要的工作原理就是利用无线电通讯网络或GPS等定位方式来确定出移动设备所在的位置，而这种定位技术早在很多年前就已经出现了。</p>
+<p>那为什么LBS技术直到最近几年才开始流行呢？这主要是因为，在过去移动设备的功能极其有限，即使定位到了设备所在的位置，也就仅仅只是定位到了而已，我们并不能在位置的基础上进行一些其他的操作。而现在就大大不同了，有了Android系统作为载体，我们可以利用定位出的位置进行许多丰富多彩的操作。比如说天气预报程序可以根据用户所在的位置自动选择城市，发微博的时候我们可以向朋友们晒一下自己在哪里，不认识路的时候随时打开地图就可以查询路线，等等。</p>
+<p>基于位置的服务所围绕的核心就是要先确定出用户所在的位置。通常有两种技术方式可以实现：一种是通过GPS定位，一种是通过网络定位。GPS定位的工作原理是基于手机内置的GPS硬件直接和卫星交互来获取当前的经纬度信息，这种定位方式精确度非常高，但缺点是只能在室外使用，室内基本无法接收到卫星的信号。网络定位的工作原理是根据手机当前网络附近的三个基站进行测速，以此计算出手机和每个基站之间的距离，再通过三角定位确定出一个大概的位置，这种定位方式精确度一般，但优点是在室内室外都可以使用。</p>
+<a id="more"></a>
+<p>Android对这两种定位方式都提供了相应的API支持，但是由于一些特殊原因，Google的网络服务在中国不可访问，从而导致网络定位方式的API失效。而GPS定位虽然不需要网络，但是必须要在室外才可以使用，因此你在室内开发的时候很有可能会遇到不管使用哪种定位方式都无法成功定位的情况。</p>
+<p>基于以上原因，我决定就不在本书中讲解Android原生定位API的用法了，而是使用一些国内第三方公司的SDK。目前国内在这一领域做得比较好的一个是百度，一个是高德。</p>
+<p>下面是学习百度在LBS方面提供的功能。</p>
+<h1 id="申请API-Key"><a href="#申请API-Key" class="headerlink" title="申请API Key"></a>申请API Key</h1><p>想在自己的应用程序里使用百度的LBS功能，首先必须申请一个API Key</p>
+<ul>
+<li>打开<a href="http://lbsyun.baidu.com/" target="_blank" rel="noopener">http://lbsyun.baidu.com/</a>进行注册</li>
+<li>点击创建应用去申请API Key,类型选择Android SDK</li>
+<li>发布版SHA1和开发版SHA1是我们申请API Key所必须填写的一个字段，它指的是打包程序时所用签名文件的SHA1指纹，可以通过Android Studio查看到<ul>
+<li>打开Android Studio中的任意一个项目，点击右侧工具栏的Gradle→项目名→:app→Tasks→ android，这里展示了一个Android Studio项目中所有内置的Gradle Tasks，其中signingReport这个Task就可以用来查看签名文件信息。</li>
+<li>双击signingReport就会看到sha1的值</li>
+<li>目前我们使用的是debug.keystore文件所生成的指纹，这是Android自动生成的一个用于测试的签名文件。而当你的应用程序发布时还需要创建一个正式的签名文件，如果要得到它的指纹，可以在cmd中输入如下命令：<code>keytool -list -v –keystore &lt;签名文件路径&gt;</code>,然后输入正确的密码就可以了。创建签名文件的方法我们将在第15章中学习。</li>
+</ul>
+</li>
+<li>现在得到的这个SHA1指纹实际上是一个开发版的SHA1指纹，不过因为暂时我们还没有一个发布版的SHA1指纹，因此这两个值都填成一样的就可以了。</li>
+<li>包名选项由于现在我们的应用还不存在，暂时预定一个即可</li>
+<li>最后提交即可</li>
+</ul>
+<h1 id="使用百度定位"><a href="#使用百度定位" class="headerlink" title="使用百度定位"></a>使用百度定位</h1><h2 id="配置LBS-Sdk"><a href="#配置LBS-Sdk" class="headerlink" title="配置LBS Sdk"></a>配置LBS Sdk</h2><ul>
+<li>新建一个LBSTest项目，包名指定为刚才自己写的那个</li>
+<li>下载百度LBS开放平台的SDK，这里地址跟书上不同了，自己找找吧<br><img src="/2019/01/26/第十一章：基于位置的服务/LBSSdk.png" alt=""></li>
+<li>下载的文件libs目录下的内容又分为两部分，BaiduLBS_Android.jar这个文件是Java层要使用到的，其他子目录下的so文件是Native层要用到的。so文件是用C/C++语言进行编写，然后再用NDK编译出来的。当然这里我们并不需要去编写C/C++的代码，因为百度都已经做好了封装，但是我们需要将libs目录下的每一个文件都放置到正确的位置。</li>
+<li>将BaiduLBS_Android.jar添加到项目的app/libs文件夹下</li>
+<li>展开src/main目录，新建一个jniLibs目录，然后把压缩包内剩下的所有放到这个目录中<br><img src="/2019/01/26/第十一章：基于位置的服务/Directory.png" alt=""></li>
+<li>虽然所有新创建的项目中，app/build.gradle文件都会默认配置以下这段声明：</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line"><span class="keyword">compile</span> <span class="keyword">fileTree</span>(dir: <span class="string">'libs'</span>, <span class="keyword">include</span>: [<span class="string">'*.jar'</span>])</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这表示会将libs目录下所有以.jar结尾的文件添加到当前项目的引用中。但是由于我们是直接将Jar包复制到libs目录下的，并没有修改gradle文件，因此不会弹出我们平时熟悉的Sync Now提示。这个时候必须手动点击一下Android Studio顶部工具栏中的Sync按钮。</p>
+<h2 id="确定自己的经纬度"><a href="#确定自己的经纬度" class="headerlink" title="确定自己的经纬度"></a>确定自己的经纬度</h2><ul>
+<li>修改activity_main.xml的代码</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/position_text_view"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改AndroidManifest中的代码</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"com.zanecode6574.lbstest"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_COARSE_LOCATION"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_FINE_LOCATION"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.CHANGE_WIFI_STATE"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WAKE_LOCK"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:roundIcon</span>=<span class="string">"@mipmap/ic_launcher_round"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:name</span>=<span class="string">"com.baidu.lbsapi.API_KEY"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:value</span>=<span class="string">"EZI9oQzACy3CCAGVFoI7yWqmz9f2F1Zw"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">"com.baidu.location.f"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:enabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:process</span>=<span class="string">":remote"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先添加了很多行权限声明，每一个权限都是百度LBS SDK内部要用到的。然后在<application>标签的内部添加了一个<meta-data>标签，这个标签的android:name部分是固定的，必须填com.baidu.lbsapi.API_KEY，android:value部分则应该填入我们在11.2节申请到的API Key。最后，还需要再注册一个LBS SDK中的服务，不用对这个服务的名字感到疑惑，因为百度LBS SDK中的代码都是混淆过的。</meta-data></application></p>
+<p><strong>这里申请了一堆权限，然后又两个提示权限只会授予系统应用，可能是版本问题</strong></p>
+<ul>
+<li>修改MainActivity中的代码</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zanecode6574.lbstest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.Manifest;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageManager;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.ActivityCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.content.ContextCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocation;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocationListener;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClient;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.BaiduMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    <span class="keyword">public</span> LocationClient mLocationClient;</span><br><span class="line">    <span class="keyword">private</span> TextView positionText;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        mLocationClient =<span class="keyword">new</span> LocationClient(getApplicationContext());</span><br><span class="line">        mLocationClient.registerLocationListener(<span class="keyword">new</span> MyLocationListener());</span><br><span class="line"></span><br><span class="line">        positionText=findViewById(R.id.position_text_view);</span><br><span class="line"></span><br><span class="line">        List&lt;<span class="keyword">String</span>&gt; permissionList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.ACCESS_FINE_LOCATION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.READ_PHONE_STATE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!permissionList.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">String</span>[] permissions=permissionList.toArray(<span class="keyword">new</span> <span class="keyword">String</span>[permissionList.<span class="built_in">size</span>()]);</span><br><span class="line">            ActivityCompat.requestPermissions(MainActivity.<span class="keyword">this</span>,permissions,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            requestLocation();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> requestLocation()&#123;</span><br><span class="line">        mLocationClient.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> onRequestPermissionsResult(<span class="built_in">int</span> requestCode, @NonNull <span class="keyword">String</span>[] permissions, @NonNull <span class="built_in">int</span>[] grantResults) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span>(grantResults.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="built_in">int</span> result:grantResults)&#123;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span>(result!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">                            Toast.makeText(<span class="keyword">this</span>, <span class="string">"必须同意所有权限才能使用应用"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                            finish();</span><br><span class="line">                            <span class="keyword">return</span>;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    requestLocation();</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"发生未知错误!"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    finish();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> class MyLocationListener implements BDLocationListener&#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceiveLocation(<span class="keyword">final</span> BDLocation bdLocation) &#123;</span><br><span class="line">            runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">                    StringBuilder currentPosition=<span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"纬度："</span>).<span class="built_in">append</span>(bdLocation.getLatitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"线："</span>).<span class="built_in">append</span>(bdLocation.getLongitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"定位方式"</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeGpsLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"GPS"</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeNetWorkLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"网络"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    positionText.setText(currentPosition);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在onCreate()方法中，我们首先创建了一个LocationClient的实例，LocationClient的构建函数接收一个Context参数，这里调用getApplicationContext()方法来获取一个全局的Context参数并传入。</li>
+<li>然后调用LocationClient的registerLocationListener()方法来注册一个定位监听器，当获取到位置信息的时候，就会回调这个定位监听器。</li>
+<li>接下来看一下这里运行时权限的用法，由于我们在AndroidManifest.xml中声明了很多权限，参考一下7.2.1小节中的危险权限表格可以发现，其中ACCESS_COARSE_LOCATION、ACCESS_FINE_LOCATION、READ_PHONE_STATE、WRITE_EXTERNAL_STORAGE这4个权限是需要进行运行时权限处理的，不过由于ACCESS_COARSE_LOCATION和ACCESS_FINE_LOCATION都属于同一个权限组，因此两者只要申请其一就可以了。</li>
+<li>一次性申请3个权限：这里我们使用了一种新的用法，首先创建一个空的List集合，然后依次判断这3个权限有没有被授权，如果没被授权就添加到List集合中，最后将List转换成数组，再调用ActivityCompat.requestPermissions()方法一次性申请。</li>
+<li>除此之外，onRequestPermissionsResult()方法中对权限申请结果的逻辑处理也和之前有所不同，这次我们通过一个循环将申请的每个权限都进行了判断，如果有任何一个权限被拒绝，那么就直接调用finish()方法关闭当前程序，只有当所有权限都被用户同意了，才会调用requestLocation()方法开始地理位置定位。</li>
+<li>requestLocation()方法中的代码比较简单，只是调用了一下LocationClient的start()方法就能开始定位了。定位的结果会回调到我们前面注册的监听器当中，也就是MyLocationListener。</li>
+<li>观察一下MyLocationListener的onReceiveLocation()方法中，在这里我们通过BDLocation的getLatitude()方法获取当前位置的纬度，通过getLongitude()方法获取当前位置的经度，通过getLocType()方法获取当前的定位方式，最终将结果组装成一个字符串，显示到TextView上面。</li>
+</ul>
+<h2 id="定位多次"><a href="#定位多次" class="headerlink" title="定位多次"></a>定位多次</h2><ul>
+<li>修改MainActivity中的代码</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zanecode6574.lbstest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.Manifest;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageManager;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.ActivityCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.content.ContextCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocation;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocationListener;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClient;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClientOption;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.BaiduMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    <span class="keyword">public</span> LocationClient mLocationClient;</span><br><span class="line">    <span class="keyword">private</span> TextView positionText;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        mLocationClient =<span class="keyword">new</span> LocationClient(getApplicationContext());</span><br><span class="line">        mLocationClient.registerLocationListener(<span class="keyword">new</span> MyLocationListener());</span><br><span class="line"></span><br><span class="line">        positionText=findViewById(R.id.position_text_view);</span><br><span class="line"></span><br><span class="line">        List&lt;<span class="keyword">String</span>&gt; permissionList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.ACCESS_FINE_LOCATION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.READ_PHONE_STATE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!permissionList.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">String</span>[] permissions=permissionList.toArray(<span class="keyword">new</span> <span class="keyword">String</span>[permissionList.<span class="built_in">size</span>()]);</span><br><span class="line">            ActivityCompat.requestPermissions(MainActivity.<span class="keyword">this</span>,permissions,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            requestLocation();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> requestLocation()&#123;</span><br><span class="line">        initLocation();</span><br><span class="line">        mLocationClient.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> onRequestPermissionsResult(<span class="built_in">int</span> requestCode, @NonNull <span class="keyword">String</span>[] permissions, @NonNull <span class="built_in">int</span>[] grantResults) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span>(grantResults.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="built_in">int</span> result:grantResults)&#123;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span>(result!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">                            Toast.makeText(<span class="keyword">this</span>, <span class="string">"必须同意所有权限才能使用应用"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                            finish();</span><br><span class="line">                            <span class="keyword">return</span>;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    requestLocation();</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"发生未知错误!"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    finish();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> initLocation()&#123;</span><br><span class="line">        LocationClientOption option=<span class="keyword">new</span> LocationClientOption();</span><br><span class="line">        option.setScanSpan(<span class="number">5000</span>);</span><br><span class="line">        mLocationClient.setLocOption(option);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> class MyLocationListener implements BDLocationListener&#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceiveLocation(<span class="keyword">final</span> BDLocation bdLocation) &#123;</span><br><span class="line">            runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">                    StringBuilder currentPosition=<span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"纬度："</span>).<span class="built_in">append</span>(bdLocation.getLatitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"线："</span>).<span class="built_in">append</span>(bdLocation.getLongitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"国家:"</span>).<span class="built_in">append</span>(bdLocation.getCountry()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"省："</span>).<span class="built_in">append</span>(bdLocation.getProvince()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"市："</span>).<span class="built_in">append</span>(bdLocation.getCity()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"区："</span>).<span class="built_in">append</span>(bdLocation.getDistrict()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"街道"</span>).<span class="built_in">append</span>(bdLocation.getStreet()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"定位方式"</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeGpsLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"GPS"</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeNetWorkLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"网络"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    positionText.setText(currentPosition);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onDestroy() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        mLocationClient.stop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>增加了一个initLocation()方法，在initLocation()方法中我们创建了一个LocationClientOption对象，然后调用它的setScanSpan()方法来设置更新的间隔。这里传入了5000，表示每5秒钟会更新一下当前的位置。<br>最后要记得，在活动被销毁的时候一定要调用LocationClient的stop()方法来停止定位，不然程序会持续在后台不停地进行定位，从而严重消耗手机的电量。</p>
+<h2 id="选择定位模式"><a href="#选择定位模式" class="headerlink" title="选择定位模式"></a>选择定位模式</h2><p>之前的代码都会发现定位方式是网络，可以在手机相应设置中修改，也可以在App中强制使用GPS定位</p>
+<ul>
+<li>修改MainActivity中的代码,在initLocation函数中增加<code>option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);</code></li>
+</ul>
+<h2 id="看得懂的位置信息"><a href="#看得懂的位置信息" class="headerlink" title="看得懂的位置信息"></a>看得懂的位置信息</h2><p>百度提供了接口能获得当前位置各种信息</p>
+<ul>
+<li>修改MainActivity中的代码,在initLocation函数中增加<code>option.setIsNeedAddress(true);</code></li>
+</ul>
+<h1 id="使用百度地图"><a href="#使用百度地图" class="headerlink" title="使用百度地图"></a>使用百度地图</h1><h2 id="让地图显示出来"><a href="#让地图显示出来" class="headerlink" title="让地图显示出来"></a>让地图显示出来</h2><ul>
+<li>修改activity_main.xml的代码</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/position_text_view"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">com.baidu.mapapi.map.MapView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/bmapView"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:clickable</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改MainACtivity中的代码</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zanecode6574.lbstest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.Manifest;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageManager;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.ActivityCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.content.ContextCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocation;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocationListener;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClient;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClientOption;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.SDKInitializer;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.BaiduMap;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MapView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    <span class="keyword">public</span> LocationClient mLocationClient;</span><br><span class="line">    <span class="keyword">private</span> TextView positionText;</span><br><span class="line">    <span class="keyword">private</span> MapView mapView;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        mLocationClient =<span class="keyword">new</span> LocationClient(getApplicationContext());</span><br><span class="line">        mLocationClient.registerLocationListener(<span class="keyword">new</span> MyLocationListener());</span><br><span class="line"></span><br><span class="line">        SDKInitializer.initialize(getApplicationContext());</span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        mapView=findViewById(R.id.bmapView);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        positionText=findViewById(R.id.position_text_view);</span><br><span class="line"></span><br><span class="line">        List&lt;<span class="keyword">String</span>&gt; permissionList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.ACCESS_FINE_LOCATION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.READ_PHONE_STATE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!permissionList.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">String</span>[] permissions=permissionList.toArray(<span class="keyword">new</span> <span class="keyword">String</span>[permissionList.<span class="built_in">size</span>()]);</span><br><span class="line">            ActivityCompat.requestPermissions(MainActivity.<span class="keyword">this</span>,permissions,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            requestLocation();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> requestLocation()&#123;</span><br><span class="line">        initLocation();</span><br><span class="line">        mLocationClient.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> onRequestPermissionsResult(<span class="built_in">int</span> requestCode, @NonNull <span class="keyword">String</span>[] permissions, @NonNull <span class="built_in">int</span>[] grantResults) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span>(grantResults.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="built_in">int</span> result:grantResults)&#123;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span>(result!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">                            Toast.makeText(<span class="keyword">this</span>, <span class="string">"必须同意所有权限才能使用应用"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                            finish();</span><br><span class="line">                            <span class="keyword">return</span>;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    requestLocation();</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"发生未知错误!"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    finish();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> initLocation()&#123;</span><br><span class="line">        LocationClientOption option=<span class="keyword">new</span> LocationClientOption();</span><br><span class="line">        option.setScanSpan(<span class="number">1000</span>);</span><br><span class="line">        option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);</span><br><span class="line">        option.setIsNeedAddress(<span class="keyword">true</span>);</span><br><span class="line">        mLocationClient.setLocOption(option);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> class MyLocationListener implements BDLocationListener&#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceiveLocation(<span class="keyword">final</span> BDLocation bdLocation) &#123;</span><br><span class="line">            runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">                    StringBuilder currentPosition=<span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"纬度："</span>).<span class="built_in">append</span>(bdLocation.getLatitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"线："</span>).<span class="built_in">append</span>(bdLocation.getLongitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"国家:"</span>).<span class="built_in">append</span>(bdLocation.getCountry()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"省："</span>).<span class="built_in">append</span>(bdLocation.getProvince()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"市："</span>).<span class="built_in">append</span>(bdLocation.getCity()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"区："</span>).<span class="built_in">append</span>(bdLocation.getDistrict()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"街道"</span>).<span class="built_in">append</span>(bdLocation.getStreet()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"定位方式"</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeGpsLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"GPS"</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeNetWorkLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"网络"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    positionText.setText(currentPosition);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onResume() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onResume();</span><br><span class="line">        mapView.onResume();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onPause() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onPause();</span><br><span class="line">        mapView.onPause();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onDestroy() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        mLocationClient.stop();</span><br><span class="line">        mapView.onDestroy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先需要调用SDKInitializer的initialize()方法来进行初始化操作，initialize()方法接收一个Context参数，这里我们调用getApplicationContext()方法来获取一个全局的Context参数并传入。</p>
+<p><strong><em>注意初始化操作一定要在setContentView()方法前调用</em></strong>，不然的话就会出错。接下来我们调用findViewById()方法获取到了MapView的实例，这个实例在后面的功能当中还会用到。</p>
+<p>另外还需要重写onResume()、onPause()和onDestroy()这3个方法，在这里对MapView进行管理，以保证资源能够及时地得到释放。</p>
+<h2 id="移动到我的位置"><a href="#移动到我的位置" class="headerlink" title="移动到我的位置"></a>移动到我的位置</h2><ul>
+<li>百度LBS SDK的API中提供了一个BaiduMap类，它是地图的总控制器，调用MapView的getMap()方法就能获取到BaiduMap的实例，如下所示：<code>BaiduMap baiduMap = mapView.getMap();</code></li>
+</ul>
+<ul>
+<li>有了BaiduMap后，我们就能对地图进行各种各样的操作了，比如设置地图的缩放级别以及将地图移动到某一个经纬度上。<br>百度地图将缩放级别的取值范围限定在3到19之间，其中小数点位的值也是可以取的，值越大，地图显示的信息就越精细。比如我们想要将缩放级别设置成12.5，就可以这样写：</li>
+</ul>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MapStatusUpdate <span class="keyword">update</span> = MapStatusUpdateFactory.zoomTo(<span class="number">12.5</span>f);</span><br><span class="line">baiduMap.animateMapStatus(<span class="keyword">update</span>);</span><br></pre></td></tr></table></figure>
+<p>其中MapStatusUpdateFactory的zoomTo()方法接收一个float型的参数，就是用于设置缩放级别的，这里我们传入12.5f。zoomTo()方法返回一个MapStatusUpdate对象，我们把这个对象传入BaiduMap的animateMapStatus()方法当中即可完成缩放功能。</p>
+<ul>
+<li>那么怎样才能让地图移动到某一个经纬度上呢？这就需要借助LatLng类了。其实LatLng并没有什么太多的用法，主要就是用于存放经纬度值的，它的构造方法接收两个参数，第一个参数是纬度值，第二个参数是经度值。之后调用MapStatusUpdateFactory的newLatLng()方法将LatLng对象传入，newLatLng()方法返回的也是一个MapStatusUpdate对象，我们再把这个对象传入BaiduMap的animateMapStatus()方法当中，就可以将地图移动到指定的经纬度上了，写法如下：</li>
+</ul>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LatLng ll = <span class="keyword">new</span> <span class="type">LatLng</span>(<span class="number">39.915</span>, <span class="number">116.404</span>);</span><br><span class="line">MapStatusUpdate update = MapStatusUpdateFactory.<span class="keyword">new</span><span class="type">LatLng</span>(ll);</span><br><span class="line">baiduMap.animateMapStatus(update);</span><br></pre></td></tr></table></figure>
+<p>上述代码就实现了将地图移动到北纬39.915度、东经116.404度这个位置的功能。</p>
+<ul>
+<li>修改MainActivity的代码</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zanecode6574.lbstest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.Manifest;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageManager;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.ActivityCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.content.ContextCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocation;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocationListener;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClient;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClientOption;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.SDKInitializer;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.BaiduMap;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MapStatusUpdate;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MapStatusUpdateFactory;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MapView;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.model.LatLng;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    <span class="keyword">public</span> LocationClient mLocationClient;</span><br><span class="line">    <span class="keyword">private</span> TextView positionText;</span><br><span class="line">    <span class="keyword">private</span> MapView mapView;</span><br><span class="line">    <span class="keyword">private</span> BaiduMap baiduMap;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">boolean</span> isFirstLocate=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        mLocationClient =<span class="keyword">new</span> LocationClient(getApplicationContext());</span><br><span class="line">        mLocationClient.registerLocationListener(<span class="keyword">new</span> MyLocationListener());</span><br><span class="line">        SDKInitializer.initialize(getApplicationContext());</span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        mapView=findViewById(R.id.bmapView);</span><br><span class="line">        baiduMap=mapView.getMap();</span><br><span class="line"></span><br><span class="line">        positionText=findViewById(R.id.position_text_view);</span><br><span class="line"></span><br><span class="line">        List&lt;<span class="keyword">String</span>&gt; permissionList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.ACCESS_FINE_LOCATION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.READ_PHONE_STATE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!permissionList.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">String</span>[] permissions=permissionList.toArray(<span class="keyword">new</span> <span class="keyword">String</span>[permissionList.<span class="built_in">size</span>()]);</span><br><span class="line">            ActivityCompat.requestPermissions(MainActivity.<span class="keyword">this</span>,permissions,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            requestLocation();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> requestLocation()&#123;</span><br><span class="line">        initLocation();</span><br><span class="line">        mLocationClient.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> onRequestPermissionsResult(<span class="built_in">int</span> requestCode, @NonNull <span class="keyword">String</span>[] permissions, @NonNull <span class="built_in">int</span>[] grantResults) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span>(grantResults.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="built_in">int</span> result:grantResults)&#123;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span>(result!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">                            Toast.makeText(<span class="keyword">this</span>, <span class="string">"必须同意所有权限才能使用应用"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                            finish();</span><br><span class="line">                            <span class="keyword">return</span>;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    requestLocation();</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"发生未知错误!"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    finish();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> navigateTo(BDLocation location)&#123;</span><br><span class="line">        <span class="keyword">if</span>(isFirstLocate)&#123;</span><br><span class="line">            LatLng ll=<span class="keyword">new</span> LatLng(location.getLatitude(),location.getLongitude());</span><br><span class="line">            MapStatusUpdate update=MapStatusUpdateFactory.newLatLng(ll);</span><br><span class="line">            baiduMap.animateMapStatus(update);</span><br><span class="line">            update=MapStatusUpdateFactory.zoomTo(<span class="number">20</span>f);</span><br><span class="line">            baiduMap.animateMapStatus(update);</span><br><span class="line">            isFirstLocate=<span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> initLocation()&#123;</span><br><span class="line">        LocationClientOption option=<span class="keyword">new</span> LocationClientOption();</span><br><span class="line">        option.setScanSpan(<span class="number">1000</span>);</span><br><span class="line">        option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);</span><br><span class="line">        option.setIsNeedAddress(<span class="keyword">true</span>);</span><br><span class="line">        mLocationClient.setLocOption(option);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> class MyLocationListener implements BDLocationListener&#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceiveLocation(<span class="keyword">final</span> BDLocation bdLocation) &#123;</span><br><span class="line"></span><br><span class="line">            runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">                    StringBuilder currentPosition=<span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"纬度："</span>).<span class="built_in">append</span>(bdLocation.getLatitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"线："</span>).<span class="built_in">append</span>(bdLocation.getLongitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"国家:"</span>).<span class="built_in">append</span>(bdLocation.getCountry()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"省："</span>).<span class="built_in">append</span>(bdLocation.getProvince()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"市："</span>).<span class="built_in">append</span>(bdLocation.getCity()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"区："</span>).<span class="built_in">append</span>(bdLocation.getDistrict()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"街道"</span>).<span class="built_in">append</span>(bdLocation.getStreet()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"定位方式"</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeGpsLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"GPS"</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeNetWorkLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"网络"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    positionText.setText(currentPosition);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeGpsLocation || bdLocation.getLocType() ==BDLocation.TypeNetWorkLocation)&#123;</span><br><span class="line">                navigateTo(bdLocation);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onResume() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onResume();</span><br><span class="line">        mapView.onResume();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onPause() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onPause();</span><br><span class="line">        mapView.onPause();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onDestroy() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        mLocationClient.stop();</span><br><span class="line">        mapView.onDestroy();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要是加入了一个navigateTo()方法。这个方法中的代码也很好理解，先是将BDLocation对象中的地理位置信息取出并封装到LatLng对象中，然后调用MapStatusUpdateFactory的newLatLng()方法并将LatLng对象传入，接着将返回的MapStatusUpdate对象作为参数传入到BaiduMap的animateMapStatus()方法当中，和上面介绍的用法是一模一样的。并且这里为了让地图信息可以显示得更加丰富一些，我们将缩放级别设置成了16。另外还有一点需要注意，上述代码当中我们使用了一个isFirstLocate变量，这个变量的作用是为了防止多次调用animateMapStatus()方法，因为将地图移动到我们当前的位置只需要在程序第一次定位的时候调用一次就可以了。</p>
+<p>写好了navigateTo()方法之后，剩下的事情就简单了，当定位到设备当前位置的时候，我们在onReceiveLocation()方法中直接把BDLocation对象传给navigateTo()方法，这样就能够让地图移动到设备所在的位置了。</p>
+<h2 id="让自己显示在地图上"><a href="#让自己显示在地图上" class="headerlink" title="让自己显示在地图上"></a>让自己显示在地图上</h2><p>百度LBS SDK当中提供了一个MyLocationData.Builder类，这个类是用来封装设备当前所在位置的，我们只需将经纬度信息传入到这个类的相应方法当中就可以了，如下所示：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyLocationData.<span class="keyword">Builder </span>locationBuilder = new MyLocationData.<span class="keyword">Builder();</span></span><br><span class="line"><span class="keyword">locationBuilder.latitude(39.915);</span></span><br><span class="line"><span class="keyword">locationBuilder.longitude(116.404);</span></span><br></pre></td></tr></table></figure>
+<p>MyLocationData.Builder类还提供了一个build()方法，当我们把要封装的信息都设置完成之后，只需要调用它的build()方法，就会生成一个MyLocationData的实例，然后再将这个实例传入到BaiduMap的setMyLocationData()方法当中，就可以让设备当前的位置显示在地图上了，写法如下：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyLocationData locationData = locationBuilder.build()<span class="comment">;</span></span><br><span class="line">baiduMap.setMyLocationData(locationData)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改MainACtivity中的代码</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zanecode6574.lbstest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.Manifest;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageManager;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.app.ActivityCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v4.content.ContextCompat;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocation;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.BDLocationListener;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClient;</span><br><span class="line"><span class="keyword">import</span> com.baidu.location.LocationClientOption;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.SDKInitializer;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.BaiduMap;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MapStatusUpdate;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MapStatusUpdateFactory;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MapView;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.<span class="built_in">map</span>.MyLocationData;</span><br><span class="line"><span class="keyword">import</span> com.baidu.mapapi.model.LatLng;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    <span class="keyword">public</span> LocationClient mLocationClient;</span><br><span class="line">    <span class="keyword">private</span> TextView positionText;</span><br><span class="line">    <span class="keyword">private</span> MapView mapView;</span><br><span class="line">    <span class="keyword">private</span> BaiduMap baiduMap;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">boolean</span> isFirstLocate=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        mLocationClient =<span class="keyword">new</span> LocationClient(getApplicationContext());</span><br><span class="line">        mLocationClient.registerLocationListener(<span class="keyword">new</span> MyLocationListener());</span><br><span class="line">        SDKInitializer.initialize(getApplicationContext());</span><br><span class="line"></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        mapView=findViewById(R.id.bmapView);</span><br><span class="line">        baiduMap=mapView.getMap();</span><br><span class="line">        baiduMap.setMyLocationEnabled(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        positionText=findViewById(R.id.position_text_view);</span><br><span class="line"></span><br><span class="line">        List&lt;<span class="keyword">String</span>&gt; permissionList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.ACCESS_FINE_LOCATION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.READ_PHONE_STATE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">            permissionList.<span class="built_in">add</span>(Manifest.permission.WRITE_EXTERNAL_STORAGE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!permissionList.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">String</span>[] permissions=permissionList.toArray(<span class="keyword">new</span> <span class="keyword">String</span>[permissionList.<span class="built_in">size</span>()]);</span><br><span class="line">            ActivityCompat.requestPermissions(MainActivity.<span class="keyword">this</span>,permissions,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            requestLocation();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> requestLocation()&#123;</span><br><span class="line">        initLocation();</span><br><span class="line">        mLocationClient.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> onRequestPermissionsResult(<span class="built_in">int</span> requestCode, @NonNull <span class="keyword">String</span>[] permissions, @NonNull <span class="built_in">int</span>[] grantResults) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span>(grantResults.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="built_in">int</span> result:grantResults)&#123;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span>(result!=PackageManager.PERMISSION_GRANTED)&#123;</span><br><span class="line">                            Toast.makeText(<span class="keyword">this</span>, <span class="string">"必须同意所有权限才能使用应用"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                            finish();</span><br><span class="line">                            <span class="keyword">return</span>;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    requestLocation();</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"发生未知错误!"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    finish();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> navigateTo(BDLocation location)&#123;</span><br><span class="line">        <span class="keyword">if</span>(isFirstLocate)&#123;</span><br><span class="line">            LatLng ll=<span class="keyword">new</span> LatLng(location.getLatitude(),location.getLongitude());</span><br><span class="line">            MapStatusUpdate update=MapStatusUpdateFactory.newLatLng(ll);</span><br><span class="line">            baiduMap.animateMapStatus(update);</span><br><span class="line">            update=MapStatusUpdateFactory.zoomTo(<span class="number">20</span>f);</span><br><span class="line">            baiduMap.animateMapStatus(update);</span><br><span class="line">            isFirstLocate=<span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        MyLocationData.Builder locationBuilder=<span class="keyword">new</span> MyLocationData.Builder();</span><br><span class="line">        locationBuilder.latitude(location.getLatitude());</span><br><span class="line">        locationBuilder.longitude(location.getLongitude());</span><br><span class="line">        MyLocationData locationData=locationBuilder.build();</span><br><span class="line">        baiduMap.setMyLocationData(locationData);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> initLocation()&#123;</span><br><span class="line">        LocationClientOption option=<span class="keyword">new</span> LocationClientOption();</span><br><span class="line">        option.setScanSpan(<span class="number">1000</span>);</span><br><span class="line">        option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);</span><br><span class="line">        option.setIsNeedAddress(<span class="keyword">true</span>);</span><br><span class="line">        mLocationClient.setLocOption(option);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> class MyLocationListener implements BDLocationListener&#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceiveLocation(<span class="keyword">final</span> BDLocation bdLocation) &#123;</span><br><span class="line"></span><br><span class="line">            runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> run() &#123;</span><br><span class="line">                    StringBuilder currentPosition=<span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"纬度："</span>).<span class="built_in">append</span>(bdLocation.getLatitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"线："</span>).<span class="built_in">append</span>(bdLocation.getLongitude()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"国家:"</span>).<span class="built_in">append</span>(bdLocation.getCountry()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"省："</span>).<span class="built_in">append</span>(bdLocation.getProvince()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"市："</span>).<span class="built_in">append</span>(bdLocation.getCity()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"区："</span>).<span class="built_in">append</span>(bdLocation.getDistrict()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"街道"</span>).<span class="built_in">append</span>(bdLocation.getStreet()).<span class="built_in">append</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">                    currentPosition.<span class="built_in">append</span>(<span class="string">"定位方式"</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeGpsLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"GPS"</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeNetWorkLocation)&#123;</span><br><span class="line">                        currentPosition.<span class="built_in">append</span>(<span class="string">"网络"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    positionText.setText(currentPosition);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(bdLocation.getLocType()==BDLocation.TypeGpsLocation || bdLocation.getLocType() ==BDLocation.TypeNetWorkLocation)&#123;</span><br><span class="line">                navigateTo(bdLocation);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onResume() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onResume();</span><br><span class="line">        mapView.onResume();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onPause() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onPause();</span><br><span class="line">        mapView.onPause();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onDestroy() &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        mLocationClient.stop();</span><br><span class="line">        mapView.onDestroy();</span><br><span class="line">        baiduMap.setMyLocationEnabled(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在navigateTo()方法中，我们添加了MyLocationData的构建逻辑，将Location中包含的经度和纬度分别封装到了MyLocationData.Builder当中，最后把MyLocationData设置到了BaiduMap的setMyLocationData()方法当中。注意这段逻辑必须写在isFirstLocate这个if条件语句的外面，因为让地图移动到我们当前的位置只需要在第一次定位的时候执行，但是设备在地图上显示的位置却应该是随着设备的移动而实时改变的。</p>
+<p>另外，根据百度地图的限制，如果我们想要使用这一功能，一定要事先调用BaiduMap的setMyLocationEnabled()方法将此功能开启，否则设备的位置将无法在地图上显示。而在程序退出的时候，也要记得将此功能给关闭掉。</p>
+<p><img src="/2019/01/26/第十一章：基于位置的服务/Map.png" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果我的文章对你有帮助，你可以自愿进行捐赠</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ZaneCode6574 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="ZaneCode6574 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/位置服务/" rel="tag"># 位置服务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/25/第十章：探究服务/" rel="next" title="第十章：探究服务">
+                <i class="fa fa-chevron-left"></i> 第十章：探究服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/27/第十二章：MaterialDesign实战/" rel="prev" title="第十二章：MaterialDesign实战">
+                第十二章：MaterialDesign实战 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZaneCode6574</p>
+              <p class="site-description motion-element" itemprop="description">这是ZaneCode6574的博客，用来记录我的轨迹和部分动态</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zanecode6574" title="GitHub &rarr; https://github.com/zanecode6574" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zanecode6574@gmail.com" title="E-Mail &rarr; mailto:zanecode6574@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Codeeeeeeeeee" title="Weibo &rarr; https://weibo.com/Codeeeeeeeeee" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://pan.234432.xyz" title="网盘 &rarr; http://pan.234432.xyz" rel="noopener" target="_blank"><i class="fa fa-fw fa-sitemap"></i>网盘</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#申请API-Key"><span class="nav-number">2.</span> <span class="nav-text">申请API Key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用百度定位"><span class="nav-number">3.</span> <span class="nav-text">使用百度定位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置LBS-Sdk"><span class="nav-number">3.1.</span> <span class="nav-text">配置LBS Sdk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确定自己的经纬度"><span class="nav-number">3.2.</span> <span class="nav-text">确定自己的经纬度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定位多次"><span class="nav-number">3.3.</span> <span class="nav-text">定位多次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择定位模式"><span class="nav-number">3.4.</span> <span class="nav-text">选择定位模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看得懂的位置信息"><span class="nav-number">3.5.</span> <span class="nav-text">看得懂的位置信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用百度地图"><span class="nav-number">4.</span> <span class="nav-text">使用百度地图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#让地图显示出来"><span class="nav-number">4.1.</span> <span class="nav-text">让地图显示出来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动到我的位置"><span class="nav-number">4.2.</span> <span class="nav-text">移动到我的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让自己显示在地图上"><span class="nav-number">4.3.</span> <span class="nav-text">让自己显示在地图上</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZaneCode6574</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">580k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">8:47</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'xKfPPGoNPXh0K9Dh2BNweXq7-gzGzoHsz',
+        appKey: 'pmn3qfbAaEDbI2yWiYC2SqyY',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"left","width":240,"height":480},"mobile":{"show":true},"log":false});</script></body>
+</html>
